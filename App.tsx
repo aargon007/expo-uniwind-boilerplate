@@ -1,4 +1,4 @@
-import "./styles/unistyles"
+import "./global.css"
 import { useEffect } from 'react';
 import { View } from "react-native";
 import { Provider } from 'react-redux';
@@ -6,8 +6,8 @@ import * as SplashScreen from 'expo-splash-screen';
 import { DarkTheme, NavigationContainer, ThemeProvider } from '@react-navigation/native';
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { PersistGate } from 'redux-persist/integration/react';
-import RootNavigator from '@/navigators/RootNavigator';
-import { persistor, store } from '@/redux/store';
+import RootNavigator from '@/src/navigators/RootNavigator';
+import { persistor, store } from '@/src/redux/store';
 import { useFonts } from "expo-font";
 
 // Keep the splash screen visible while we fetch resources

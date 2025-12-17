@@ -2,8 +2,8 @@ import * as React from 'react';
 import { type NavigationProp } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import type { RootStackParamList } from './type';
-import Profile from '@/app/screens/Profile';
-import Home from '@/app/screens/Home';
+import Profile from '@/src/screens/Profile';
+import Home from '@/src/screens/Home';
 
 export type StackNavigation = NavigationProp<RootStackParamList>;
 

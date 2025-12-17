@@ -6,7 +6,8 @@
         "moduleResolution": "bundler",
         "paths": {
             "@/*": ["./*"]
-        }
+        },
+        "types": ["uniwind/types"]
     },
     "include": ["**/*.ts", "**/*.tsx"]
 }

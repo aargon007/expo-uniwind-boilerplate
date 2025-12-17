@@ -1,6 +1,6 @@
 import { TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import type { StackNavigation } from '@/navigators/RootNavigator';
+import type { StackNavigation } from '@/src/navigators/RootNavigator';
 
 
 export default function Header() {
@@ -18,7 +18,7 @@ export default function Header() {
             }}
             onPress={() => navigate('Profile')}
         >
-            
+
         </TouchableOpacity>
     );
 }

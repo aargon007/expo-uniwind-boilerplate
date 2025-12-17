@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import type { StackNavigation } from '@/navigators/RootNavigator';
+import type { StackNavigation } from '@/src/navigators/RootNavigator';
 import ArrowLeft from '../icons/ArrowLeft';
 
 const ScreenHeader = ({ title }: { title?: string }) => {

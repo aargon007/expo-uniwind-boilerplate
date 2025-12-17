@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { View, Text, ScrollView, TouchableOpacity, StatusBar } from "react-native"
 import { StyleSheet, UnistylesRuntime, useUnistyles } from "react-native-unistyles"
 import type { NativeStackScreenProps } from "@react-navigation/native-stack"
-import type { RootStackParamList } from "@/navigators/type"
+import type { RootStackParamList } from "@/src/navigators/type"
 import Container from "../component/shared/Container"
 import { Button } from "../component/ui/Button"
 
