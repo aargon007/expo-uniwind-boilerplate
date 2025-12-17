@@ -1,0 +1,76 @@
+{
+  "expo": {
+    "name": "Uniwind",
+    "slug": "uniwind",
+    "version": "1.0.0",
+    "scheme": "uniwind",
+    "newArchEnabled": true,
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "icon": "./assets/icon.png",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "requireFullScreen": true,
+      "entitlements": {
+        "com.apple.developer.networking.wifi-info": true,
+        "com.apple.external-accessory.wireless-configuration": true,
+        "aps-environment": "production"
+      },
+      "infoPlist": {
+        "UIRequiresFullScreen": true,
+        "NSDocumentsUsageDescription": "This app requires access to the file system to store and retrieve data.",
+        "NSFileProtectionComplete": "This setting ensures that files are protected.",
+        "NSLocationAlwaysUsageDescription": "This app requires access to your location to find nearby Bluetooth devices.",
+        "NSLocationWhenInUseUsageDescription": "This app requires access to your location to find nearby Bluetooth devices.",
+        "NSLocalNetworkUsageDescription": "This app requires access to the local network to connect to devices on the same network.",
+        "NSBonjourServices": [
+          "_bonjour._tcp",
+          "_lnp._tcp."
+        ],
+        "UIBackgroundModes": [
+          "fetch",
+          "remote-notification"
+        ],
+        "NSAppTransportSecurity": {
+          "NSAllowsArbitraryLoads": true
+        }
+      },
+      "config": {
+        "usesNonExemptEncryption": false
+      },
+      "bundleIdentifier": "com.uniwind.app"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#000000"
+      },
+      "package": "com.uniwind.app"
+    },
+    "web": {
+      "bundler": "metro",
+      "favicon": "./assets/icon.png"
+    },
+    "plugins": [
+      "expo-font",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/splash.png",
+          "imageWidth": 100,
+          "resizeMode": "contain",
+          "backgroundColor": "#090909"
+        }
+      ],
+      "react-native-edge-to-edge"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": ""
+      }
+    }
+  }
+}
