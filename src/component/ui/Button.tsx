@@ -1,149 +1,112 @@
-import type React from "react"
-import { TouchableOpacity, Text, ActivityIndicator } from "react-native"
-import { StyleSheet, useUnistyles } from "react-native-unistyles"
+import React from 'react';
+import { ActivityIndicator, Pressable, type PressableProps, Text, View, type ViewStyle, type StyleProp } from 'react-native';
 
-interface ButtonProps {
-    title: string
-    onPress: () => void
-    variant?: "primary" | "secondary" | "outline" | "ghost"
-    size?: "sm" | "md" | "lg"
-    loading?: boolean
-    disabled?: boolean
-    fullWidth?: boolean
+export type ButtonVariant = 'default' | 'primary' | 'secondary' | 'outline' | 'ghost';
+export type ButtonSize = 'sm' | 'md' | 'lg';
+export type ButtonWidth = 'auto' | 'full';
+
+export interface UIButtonProps extends PressableProps {
+    label?: string;
+    children?: React.ReactNode;
+    variant?: ButtonVariant;
+    size?: ButtonSize;
+    width?: ButtonWidth;
+    isLoading?: boolean;
+    leftIcon?: React.ReactNode;
+    rightIcon?: React.ReactNode;
+    className?: string;
+    textClassName?: string;
+    contentContainerStyle?: StyleProp<ViewStyle>;
 }
 
-export const Button: React.FC<ButtonProps> = ({
-    title,
-    onPress,
-    variant = "primary",
-    size = "md",
-    loading = false,
-    disabled = false,
-    fullWidth = false,
+const cn = (...classes: Array<string | undefined | null | false>) =>
+    classes.filter(Boolean).join(' ');
+
+const sizeClasses: Record<ButtonSize, string> = {
+    sm: 'h-10 px-4',
+    md: 'h-12 px-5',
+    lg: 'h-14 px-6',
+};
+
+const variantClasses: Record<ButtonVariant, string> = {
+    default: 'bg-grey-900 dark:bg-white',
+    primary: 'bg-primary',
+    secondary: 'bg-secondary',
+    outline: 'border border-border',
+    ghost: 'bg-transparent',
+};
+
+const textVariantClasses: Record<ButtonVariant, string> = {
+    default: 'text-white dark:text-black',
+    primary: 'text-white',
+    secondary: 'text-white',
+    outline: 'text-text-primary',
+    ghost: 'text-text-primary',
+};
+
+const widthClasses: Record<ButtonWidth, string> = {
+    auto: '',
+    full: 'flex-1',
+};
+
+export const Button: React.FC<UIButtonProps> = ({
+    label,
+    children,
+    variant = 'default',
+    size = 'md',
+    width = 'auto',
+    disabled,
+    isLoading,
+    leftIcon,
+    rightIcon,
+    className,
+    textClassName,
+    contentContainerStyle,
+    ...pressableProps
 }) => {
-    const { theme, rt } = useUnistyles();
+    const isDisabled = disabled || isLoading;
 
-    // Apply variants using useVariants hook
-    styles.useVariants({
-        variant,
-        size,
-        fullWidth,
-        disabled: disabled || loading,
-    })
+    const containerClasses = cn(
+        'flex-row items-center justify-center rounded-full active:opacity-80',
+        'gap-2',
+        sizeClasses[size],
+        variantClasses[variant],
+        widthClasses[width],
+        isDisabled && 'opacity-60',
+        className,
+    );
 
-    const getLoadingColor = () => {
-        if (variant === "outline" || variant === "ghost") {
-            return theme.colors.primary
-        }
-        return theme.colors.text === "#FFFFFF" ? "#FFFFFF" : theme.colors.background
-    }
+    const labelClasses = cn(
+        'text-[15px] font-medium',
+        textVariantClasses[variant],
+        textClassName,
+    );
 
     return (
-        <TouchableOpacity
-            style={styles.button}
-            onPress={onPress}
-            disabled={disabled || loading}
-            activeOpacity={disabled || loading ? 1 : 0.7}
+        <Pressable
+            {...pressableProps}
+            disabled={isDisabled}
+            className={containerClasses}
+            style={contentContainerStyle}
         >
-            {loading ? (
+            {isLoading && (
                 <ActivityIndicator
                     size="small"
-                    color={getLoadingColor()}
+                    color={variant === 'outline' || variant === 'ghost' ? '#0f172a' : '#ffffff'}
                 />
-            ) : (
-                <Text style={styles.text}>{title}</Text>
             )}
-        </TouchableOpacity>
-    )
-}
 
-const styles = StyleSheet.create((theme, rt) => ({
-    button: {
-        borderRadius: theme.borderRadius.md,
-        alignItems: "center",
-        justifyContent: "center",
-        flexDirection: "row",
-        variants: {
-            variant: {
-                primary: {
-                    backgroundColor: theme.colors.primary,
-                    ...theme.shadows.sm,
-                },
-                secondary: {
-                    backgroundColor: theme.colors.secondary,
-                    ...theme.shadows.sm,
-                },
-                outline: {
-                    backgroundColor: "transparent",
-                    borderWidth: 1,
-                    borderColor: theme.colors.primary,
-                },
-                ghost: {
-                    backgroundColor: "transparent",
-                },
-            },
-            size: {
-                sm: {
-                    paddingHorizontal: theme.spacing.md,
-                    paddingVertical: theme.spacing.sm,
-                    minHeight: 36,
-                },
-                md: {
-                    paddingHorizontal: theme.spacing.lg,
-                    paddingVertical: theme.spacing.md,
-                    minHeight: 44,
-                },
-                lg: {
-                    paddingHorizontal: theme.spacing.xl,
-                    paddingVertical: theme.spacing.lg,
-                    minHeight: 52,
-                },
-            },
-            fullWidth: {
-                true: {
-                    width: "100%",
-                },
-                false: {},
-            },
-            disabled: {
-                true: {
-                    opacity: 0.5,
-                },
-                false: {
-                    opacity: 1,
-                },
-            },
-        },
-    },
-    text: {
-        fontWeight: "500",
-        textAlign: "center",
-        variants: {
-            variant: {
-                primary: {
-                    color: theme.colors.background, // Use background color for contrast
-                },
-                secondary: {
-                    color: theme.colors.background, // Use background color for contrast
-                },
-                outline: {
-                    color: theme.colors.primary,
-                },
-                ghost: {
-                    color: theme.colors.primary,
-                },
-            },
-            size: {
-                sm: {
-                    fontSize: rt.fontScale * theme.fontSize.sm,
-                },
-                md: {
-                    fontSize: rt.fontScale * theme.fontSize.md,
-                },
-                lg: {
-                    fontSize: rt.fontScale * theme.fontSize.lg,
-                },
-            },
-        },
-    },
-}))
+            {!isLoading && leftIcon && <View className="mr-1">{leftIcon}</View>}
+
+            {label ? (
+                <Text className={labelClasses}>{label}</Text>
+            ) : (
+                children
+            )}
+
+            {!isLoading && rightIcon && <View className="ml-1">{rightIcon}</View>}
+        </Pressable>
+    );
+};
+
+export default Button;

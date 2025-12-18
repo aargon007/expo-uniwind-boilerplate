@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState, type ReactNode } from 'react';
 import { Uniwind } from 'uniwind';
-import { storage } from '@/src/utils/mmkv';
+import Storage from 'expo-sqlite/kv-store';
 
 export type AppTheme = 'light' | 'dark' | 'system';
 
@@ -22,7 +22,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
     // If no theme is stored, fall back to system theme.
     useEffect(() => {
         try {
-            const stored = storage.getString(THEME_STORAGE_KEY) as AppTheme | undefined;
+            const stored = Storage.getItemSync(THEME_STORAGE_KEY) as AppTheme | undefined;
             const initialTheme: AppTheme = stored ?? 'system';
 
             setThemeState(initialTheme);
@@ -39,7 +39,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
         setThemeState(next);
 
         try {
-            storage.set(THEME_STORAGE_KEY, next);
+            Storage.setItemSync(THEME_STORAGE_KEY, next);
         } catch {
             // Ignore storage errors; theme will still be applied for this session.
         }
