@@ -1,15 +1,16 @@
-import React, { useState } from "react"
-import { View, Text, ScrollView, TouchableOpacity, StatusBar, StyleSheet } from "react-native"
+import React from "react"
+import { View, Text, StatusBar, StyleSheet, FlatList } from "react-native"
 import type { NativeStackScreenProps } from "@react-navigation/native-stack"
 import type { RootStackParamList } from "@/src/navigators/type"
 import Container from "../component/shared/Container"
 import { Button } from "../component/ui/Button"
+import { useGetPosts } from "../store/api/postQueries"
 
 type RouteProps = NativeStackScreenProps<RootStackParamList, "Home">;
 
 const HomeScreen = ({ navigation }: RouteProps) => {
-    
-
+    const { posts, isLoading } = useGetPosts();
+ 
     return (
         <Container>
             <StatusBar
@@ -17,13 +18,20 @@ const HomeScreen = ({ navigation }: RouteProps) => {
                 // backgroundColor={theme.colors.background}
             />
 
-            <ScrollView
-                style={styles.scrollView}
-                showsVerticalScrollIndicator={false}
-                contentContainerStyle={styles.scrollContent}
-            >
-                
-            </ScrollView>
+            <FlatList
+            data={posts}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={({ item }) => (
+                <View style={{ marginBottom: 10, padding: 10, backgroundColor: "gray", borderRadius: 10 }}>
+                    <Text>
+                        {item.title}</Text>
+                    <Text >
+                        {item.body}
+                    </Text>
+                </View>
+            )}
+            style={{ padding: 10 }}
+            />
         </Container>
     )
 }
