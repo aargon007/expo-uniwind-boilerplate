@@ -8,6 +8,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ThemeProvider } from '@/src/providers/ThemeProvider';
 import RootNavigator from "./src/navigators/RootNavigator";
+import { withUniwind } from "uniwind";
 
 const queryClient = new QueryClient();
 
@@ -31,8 +32,10 @@ export default function App() {
     return null;
   };
 
+  const StyledSafeAreaProvider = withUniwind(SafeAreaProvider);
+
   return (
-    <SafeAreaProvider style={{ flex: 1 }}>
+    <StyledSafeAreaProvider className="flex-1 bg-bg">
       <ThemeProvider>
         <QueryClientProvider client={queryClient}>
           <GestureHandlerRootView style={{ flex: 1 }}>
@@ -42,6 +45,6 @@ export default function App() {
           </GestureHandlerRootView>
         </QueryClientProvider>
       </ThemeProvider>
-    </SafeAreaProvider>
+    </StyledSafeAreaProvider>
   );
 }

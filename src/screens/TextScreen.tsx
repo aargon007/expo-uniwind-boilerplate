@@ -1,67 +1,74 @@
 import React from 'react';
-import { View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import Text from '../component/ui/Text';
 import ScreenWrapper from '../component/ui/ScreenWrapper';
+import ScreenHeader from '../component/shared/ScreenHeader';
 
 const TextScreen = () => {
-    
+
     return (
         <ScreenWrapper>
-            {/* Headings */}
-            <Text variant="h1">Welcome Back</Text>
-            <Text variant="h2" weight="semibold">Dashboard</Text>
-            <Text variant="h3">Recent Activity</Text>
-            <Text variant="h4">Settings</Text>
+            <ScreenHeader title="Text Component" />
 
-            {/* Body text */}
-            <Text variant="body">This is regular body text</Text>
-            <Text variant="body-sm">This is smaller body text</Text>
-
-            {/* Secondary/Tertiary colors */}
-            <Text variant="body" color="secondary">
-                Secondary information
-            </Text>
-            <Text variant="caption" color="tertiary">
-                Less important details
-            </Text>
-
-            {/* Labels */}
-            <Text variant="label" color="secondary">Email Address</Text>
-
-            {/* Semantic colors */}
-            <Text variant="body-sm" color="success">
-                ✓ Changes saved successfully
-            </Text>
-            <Text variant="body-sm" color="error">
-                ⚠ Please check your input
-            </Text>
-            <Text variant="caption" color="warning">
-                Warning: This action cannot be undone
-            </Text>
-
-            {/* Custom weight override */}
-            <Text variant="body" weight="bold">
-                Important notice
-            </Text>
-
-            {/* With custom className */}
-            <Text variant="body" className="text-center mt-4">
-                Centered text with margin
-            </Text>
-
-            {/* Multiple lines */}
-            <Text variant="body" color="secondary" numberOfLines={2}>
-                This is a longer text that will be truncated after two lines...
-            </Text>
-
-            {/* All RN Text props still work */}
-            <Text
-                variant="body"
-                onPress={() => console.log('pressed')}
-                selectable
+            <ScrollView
+                contentContainerClassName='p-4'
             >
-                Tappable text
-            </Text>
+                {/* Headings */}
+                <Text variant="h1">Welcome Back</Text>
+                <Text variant="h2" weight="semibold">Dashboard</Text>
+                <Text variant="h3">Recent Activity</Text>
+                <Text variant="h4">Settings</Text>
+
+                {/* Body text */}
+                <Text variant="body">This is regular body text</Text>
+                <Text variant="body-sm">This is smaller body text</Text>
+
+                {/* Secondary/Tertiary colors */}
+                <Text variant="body" color="secondary">
+                    Secondary information
+                </Text>
+                <Text variant="caption" color="tertiary">
+                    Less important details
+                </Text>
+
+                {/* Labels */}
+                <Text variant="label" color="secondary">Email Address</Text>
+
+                {/* Semantic colors */}
+                <Text variant="body-sm" color="success">
+                    ✓ Changes saved successfully
+                </Text>
+                <Text variant="body-sm" color="error">
+                    ⚠ Please check your input
+                </Text>
+                <Text variant="caption" color="warning">
+                    Warning: This action cannot be undone
+                </Text>
+
+                {/* Custom weight override */}
+                <Text variant="body" weight="bold">
+                    Important notice
+                </Text>
+
+                {/* With custom className */}
+                <Text variant="body" className="text-center mt-4">
+                    Centered text with margin
+                </Text>
+
+                {/* Multiple lines */}
+                <Text variant="body" color="secondary" numberOfLines={2}>
+                    This is a longer text that will be truncated after two lines...
+                </Text>
+
+                {/* All RN Text props still work */}
+                <Text
+                    variant="body"
+                    onPress={() => console.log('pressed')}
+                    selectable
+                >
+                    Tappable text
+                </Text>
+            </ScrollView>
         </ScreenWrapper>
     );
 };
