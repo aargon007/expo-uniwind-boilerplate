@@ -6,7 +6,7 @@ import { Button } from "../component/ui/Button"
 import { useGetPosts } from "../store/api/postQueries"
 import ScreenWrapper from "../component/ui/ScreenWrapper"
 
-type RouteProps = NativeStackScreenProps<RootStackParamList, "Home">;
+type RouteProps = NativeStackScreenProps<RootStackParamList, "QueryScreen">;
 
 const QueryScreen = ({ navigation }: RouteProps) => {
     const { posts, isLoading } = useGetPosts();

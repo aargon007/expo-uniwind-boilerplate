@@ -2,7 +2,7 @@ import axios from "axios"
 import { useEffect } from "react"
 import { useNavigation } from "@react-navigation/native"
 import AsyncStorage from "@react-native-async-storage/async-storage"
-import type { StackNavigation } from "@/navigators/RootNavigator"
+import type { StackNavigation } from "@/src/navigators/RootNavigator";
 
 const axiosInstance = axios.create({
     baseURL: "https://jsonplaceholder.typicode.com",

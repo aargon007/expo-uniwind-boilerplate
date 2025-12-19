@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { type NavigationProp } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import type { RootStackParamList } from './index.ts';
+import type { RootStackParamList } from './';
 import Profile from '@/src/screens/Profile';
 import Home from '@/src/screens/Home';
 import TextScreen from '../screens/TextScreen';
+import QueryScreen from '../screens/QueryScreen';
 
 export type StackNavigation = NavigationProp<RootStackParamList>;
 
@@ -30,6 +31,14 @@ const RootNavigator = () => {
             <Stack.Screen
                 name="TextScreen"
                 component={TextScreen}
+                options={{
+                    headerShown: false,
+                }}
+            />
+
+            <Stack.Screen
+                name="QueryScreen"
+                component={QueryScreen}
                 options={{
                     headerShown: false,
                 }}
