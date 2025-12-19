@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { type NavigationProp } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import type { RootStackParamList } from './type';
+import type { RootStackParamList } from './index.ts';
 import Profile from '@/src/screens/Profile';
 import Home from '@/src/screens/Home';
+import TextScreen from '../screens/TextScreen';
 
 export type StackNavigation = NavigationProp<RootStackParamList>;
 
@@ -21,6 +22,14 @@ const RootNavigator = () => {
             <Stack.Screen
                 name="Home"
                 component={Home}
+                options={{
+                    headerShown: false,
+                }}
+            />
+
+            <Stack.Screen
+                name="TextScreen"
+                component={TextScreen}
                 options={{
                     headerShown: false,
                 }}

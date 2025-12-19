@@ -15,6 +15,18 @@ export const useGetPosts = () => {
     return { posts, refetch, isLoading };
 }
 
+// Queries
+// const query = useQuery({ queryKey: ['todos'], queryFn: getTodos })
+
+// // Mutations
+// const mutation = useMutation({
+//     mutationFn: postTodo,
+//     onSuccess: () => {
+//         // Invalidate and refetch
+//         queryClient.invalidateQueries({ queryKey: ['todos'] })
+//     },
+// })
+
 // export const usePost = (id: number) => {
 //     return useQuery(["post", id], async () => {
 //         const response = await axiosInstance.get(`/posts/${id}`)

@@ -1,49 +1,24 @@
 import React from "react"
-import { View, Text, StatusBar, StyleSheet, FlatList } from "react-native"
+import { View, Text, StatusBar } from "react-native"
 import type { NativeStackScreenProps } from "@react-navigation/native-stack"
-import type { RootStackParamList } from "@/src/navigators/type"
-import Container from "../component/shared/Container"
+import type { RootStackParamList } from "@/src/navigators/index.ts"
 import { Button } from "../component/ui/Button"
-import { useGetPosts } from "../store/api/postQueries"
+import ScreenWrapper from "../component/ui/ScreenWrapper"
 
 type RouteProps = NativeStackScreenProps<RootStackParamList, "Home">;
 
 const HomeScreen = ({ navigation }: RouteProps) => {
-    const { posts, isLoading } = useGetPosts();
- 
+
     return (
-        <Container>
-            <StatusBar
-                // barStyle={UnistylesRuntime.themeName === 'light' ? 'dark-content' : 'light-content'}
-                // backgroundColor={theme.colors.background}
+        <ScreenWrapper>
+            <Button
+                label="Text screen"
+                onPress={() => navigation.navigate("TextScreen")}
             />
 
-            <FlatList
-            data={posts}
-            keyExtractor={(item) => item.id.toString()}
-            renderItem={({ item }) => (
-                <View style={{ marginBottom: 10, padding: 10, backgroundColor: "gray", borderRadius: 10 }}>
-                    <Text>
-                        {item.title}</Text>
-                    <Text >
-                        {item.body}
-                    </Text>
-                </View>
-            )}
-            style={{ padding: 10 }}
-            />
-        </Container>
+
+        </ScreenWrapper>
     )
 }
-
-const styles = StyleSheet.create({
-    scrollView: {
-        flex: 1,
-    },
-    scrollContent: {
-        paddingBottom: 50,
-    },
-    
-})
 
 export default HomeScreen;

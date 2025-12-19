@@ -1,7 +1,7 @@
 import React from 'react';
 import { ActivityIndicator, Pressable, type PressableProps, Text, View, type ViewStyle, type StyleProp } from 'react-native';
 
-export type ButtonVariant = 'default' | 'primary' | 'secondary' | 'outline' | 'ghost';
+export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'success' | 'error';
 export type ButtonSize = 'sm' | 'md' | 'lg';
 export type ButtonWidth = 'auto' | 'full';
 
@@ -28,31 +28,48 @@ const sizeClasses: Record<ButtonSize, string> = {
     lg: 'h-14 px-6',
 };
 
+const textSizeClasses: Record<ButtonSize, string> = {
+    sm: 'text-sm',
+    md: 'text-[15px]',
+    lg: 'text-base',
+};
+
 const variantClasses: Record<ButtonVariant, string> = {
-    default: 'bg-grey-900 dark:bg-white',
-    primary: 'bg-primary',
-    secondary: 'bg-secondary',
-    outline: 'border border-border',
-    ghost: 'bg-transparent',
+    primary: 'bg-primary active:bg-primary-hover',
+    secondary: 'bg-bg-secondary active:bg-border-strong',
+    outline: 'border-2 border-border-strong active:bg-bg-secondary',
+    ghost: 'bg-transparent active:bg-bg-secondary',
+    success: 'bg-success active:opacity-90',
+    error: 'bg-error active:opacity-90',
 };
 
 const textVariantClasses: Record<ButtonVariant, string> = {
-    default: 'text-white dark:text-black',
     primary: 'text-white',
-    secondary: 'text-white',
-    outline: 'text-text-primary',
-    ghost: 'text-text-primary',
+    secondary: 'text-text',
+    outline: 'text-text',
+    ghost: 'text-text',
+    success: 'text-white',
+    error: 'text-white',
+};
+
+const spinnerColorVariants: Record<ButtonVariant, string | undefined> = {
+    primary: '#ffffff',
+    secondary: undefined, // Will use default text color
+    outline: undefined,
+    ghost: undefined,
+    success: '#ffffff',
+    error: '#ffffff',
 };
 
 const widthClasses: Record<ButtonWidth, string> = {
-    auto: '',
-    full: 'flex-1',
+    auto: 'self-start',
+    full: 'w-full',
 };
 
 export const Button: React.FC<UIButtonProps> = ({
     label,
     children,
-    variant = 'default',
+    variant = 'primary',
     size = 'md',
     width = 'auto',
     disabled,
@@ -67,17 +84,18 @@ export const Button: React.FC<UIButtonProps> = ({
     const isDisabled = disabled || isLoading;
 
     const containerClasses = cn(
-        'flex-row items-center justify-center rounded-full active:opacity-80',
+        'flex-row items-center justify-center rounded-full',
         'gap-2',
         sizeClasses[size],
         variantClasses[variant],
         widthClasses[width],
-        isDisabled && 'opacity-60',
+        isDisabled && 'opacity-50',
         className,
     );
 
     const labelClasses = cn(
-        'text-[15px] font-medium',
+        'font-semibold',
+        textSizeClasses[size],
         textVariantClasses[variant],
         textClassName,
     );
@@ -92,11 +110,11 @@ export const Button: React.FC<UIButtonProps> = ({
             {isLoading && (
                 <ActivityIndicator
                     size="small"
-                    color={variant === 'outline' || variant === 'ghost' ? '#0f172a' : '#ffffff'}
+                    color={spinnerColorVariants[variant]}
                 />
             )}
 
-            {!isLoading && leftIcon && <View className="mr-1">{leftIcon}</View>}
+            {!isLoading && leftIcon && <View>{leftIcon}</View>}
 
             {label ? (
                 <Text className={labelClasses}>{label}</Text>
@@ -104,7 +122,7 @@ export const Button: React.FC<UIButtonProps> = ({
                 children
             )}
 
-            {!isLoading && rightIcon && <View className="ml-1">{rightIcon}</View>}
+            {!isLoading && rightIcon && <View>{rightIcon}</View>}
         </Pressable>
     );
 };
