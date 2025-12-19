@@ -1,6 +1,6 @@
-import type { TUser } from '@/types/user';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import type { TUser } from '../types';
 
 // Define the type for your data store
 interface profileStore {
@@ -8,7 +8,7 @@ interface profileStore {
     setUser: (data: TUser | null) => void;
 }
 
-const useProfileStore = create<profileStore>((set) => ({
+const useUserStore = create<profileStore>((set) => ({
     user: null,
     // dispatchable function
     setUser: (data: TUser | null) => set(() => ({
@@ -17,4 +17,4 @@ const useProfileStore = create<profileStore>((set) => ({
     deleteEverything: () => set(() => ({})) // clears the entire store, actions included
 }));
 
-export default useProfileStore;
+export default useUserStore;
