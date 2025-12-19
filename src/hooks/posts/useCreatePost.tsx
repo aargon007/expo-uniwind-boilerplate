@@ -2,6 +2,7 @@ import useAxiosInstance from "@/src/api/axiosInstance";
 import { createPost } from "@/src/api/posts.api";
 import { queryKeys } from "@/src/api/queryKeys";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { Alert } from "react-native";
 
 export const useCreatePost = () => {
     const [axios] = useAxiosInstance();
@@ -11,15 +12,11 @@ export const useCreatePost = () => {
         mutationFn: (payload: any) => createPost(axios, payload),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: queryKeys.posts });
+            Alert.alert('Success', 'Post added successfully!');
+            // useModalStore.getState().setModalOpen(false);
         },
-        //     onSuccess: () => {
-        //         queryClient.invalidateQueries({ queryKey: ['posts'] });
-        //         Alert.alert('Success', 'Post added successfully!');
-        //         setTitle('');
-        //         setBody('');
-        //     },
-        //     onError: (error) => {
-        //         Alert.alert('Error', error.message);
-        //     },
+        onError: (error) => {
+            Alert.alert('Error', error.message);
+        },
     });
 };

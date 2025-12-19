@@ -17,6 +17,8 @@ const RootNavigator = () => {
             screenOptions={{
                 headerShown: false,
                 autoHideHomeIndicator: true,
+                // animation: "slide_from_right",
+                // animationDuration: 150
             }}
             initialRouteName="Home"
         >
