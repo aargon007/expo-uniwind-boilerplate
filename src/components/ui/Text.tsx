@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text as RNText, type TextProps as RNTextProps } from 'react-native';
+import { cn } from '@/src/utils/cn';
 
 export type TextVariant = 'h1' | 'h2' | 'h3' | 'h4' | 'body' | 'body-sm' | 'caption' | 'label';
 export type TextWeight = 'normal' | 'medium' | 'semibold' | 'bold';
@@ -12,9 +13,6 @@ export interface UITextProps extends RNTextProps {
     className?: string;
     children: React.ReactNode;
 }
-
-const cn = (...classes: Array<string | undefined | null | false>) =>
-    classes.filter(Boolean).join(' ');
 
 const variantClasses: Record<TextVariant, string> = {
     h1: 'text-4xl leading-tight',

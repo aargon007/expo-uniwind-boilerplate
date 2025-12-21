@@ -1,5 +1,6 @@
 import React from 'react';
 import { ActivityIndicator, Pressable, type PressableProps, Text, View, type ViewStyle, type StyleProp } from 'react-native';
+import { cn } from '@/src/utils/cn';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'success' | 'error';
 export type ButtonSize = 'sm' | 'md' | 'lg';
@@ -18,9 +19,6 @@ export interface UIButtonProps extends PressableProps {
     textClassName?: string;
     contentContainerStyle?: StyleProp<ViewStyle>;
 }
-
-const cn = (...classes: Array<string | undefined | null | false>) =>
-    classes.filter(Boolean).join(' ');
 
 const sizeClasses: Record<ButtonSize, string> = {
     sm: 'h-10 px-4',

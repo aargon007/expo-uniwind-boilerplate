@@ -5,7 +5,6 @@ import * as SplashScreen from 'expo-splash-screen';
 import { NavigationContainer } from '@react-navigation/native';
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { ThemeProvider } from '@/src/providers/ThemeProvider';
 import RootNavigator from "./src/navigators/RootNavigator";
 import { ErrorBoundary } from "./src/components/shared/ErrorBoundary";
 import { View } from "react-native";
@@ -32,27 +31,23 @@ export default function App() {
     return null;
   };
 
-  // const StyledSafeAreaProvider = withUniwind(SafeAreaProvider);
-
   return (
     <View className="flex-1 bg-bg">
-      <ThemeProvider>
-        <ErrorBoundary
-          onError={(error, errorInfo) => {
-            // Log to your error tracking service
-            console.error('App Error:', error);
-            console.error('Error Info:', errorInfo);
-          }}
-        >
-          <QueryClientProvider client={queryClient}>
-            <GestureHandlerRootView style={{ flex: 1 }}>
-              <NavigationContainer>
-                <RootNavigator />
-              </NavigationContainer>
-            </GestureHandlerRootView>
-          </QueryClientProvider>
-        </ErrorBoundary>
-      </ThemeProvider>
+      <ErrorBoundary
+        onError={(error, errorInfo) => {
+          // Log to your error tracking service
+          console.error('App Error:', error);
+          console.error('Error Info:', errorInfo);
+        }}
+      >
+        <QueryClientProvider client={queryClient}>
+          <GestureHandlerRootView style={{ flex: 1 }}>
+            <NavigationContainer>
+              <RootNavigator />
+            </NavigationContainer>
+          </GestureHandlerRootView>
+        </QueryClientProvider>
+      </ErrorBoundary>
     </View>
   );
 }

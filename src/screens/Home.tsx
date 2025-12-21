@@ -2,20 +2,18 @@ import React from "react"
 import { View, Text } from "react-native"
 import type { NativeStackScreenProps } from "@react-navigation/native-stack"
 import type { RootStackParamList } from "@/src/navigators/index.ts"
-import { useUniwind } from "uniwind"
-import { useAppTheme } from "../providers/useAppTheme"
+import { Uniwind, useUniwind } from "uniwind"
 import Icon from "../components/ui/Icon"
-import ScreenWrapper from "../components/ui/ScreenWrapper"
 import Button from "../components/ui/Button"
+import ScreenWrapper from "../components/ui/ScreenWrapper"
 
 type RouteProps = NativeStackScreenProps<RootStackParamList, "Home">;
 
 const HomeScreen = ({ navigation }: RouteProps) => {
     const { theme } = useUniwind();
-    const { setAppTheme } = useAppTheme();
 
     const toggleTheme = () => {
-        setAppTheme(theme === "dark" ? "light" : "dark");
+        Uniwind.setTheme(theme === "dark" ? "light" : "dark");
     };
 
     const themeIcon = (
@@ -40,6 +38,7 @@ const HomeScreen = ({ navigation }: RouteProps) => {
                     label={theme === "dark" ? "Light" : "Dark"}
                     leftIcon={themeIcon}
                     onPress={toggleTheme}
+                    textClassName="uppercase"
                 />
             </View>
 
