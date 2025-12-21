@@ -2,9 +2,9 @@ import React from "react";
 import { View, Text, FlatList, ActivityIndicator } from "react-native";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import type { RootStackParamList } from "@/src/navigators";
-import ScreenWrapper from "../component/ui/ScreenWrapper";
+import ScreenWrapper from "../components/ui/ScreenWrapper";
 import { useGetPosts } from "../hooks/posts/useGetPosts";
-import ScreenHeader from "../component/shared/ScreenHeader";
+import ScreenHeader from "../components/shared/ScreenHeader";
 
 type RouteProps = NativeStackScreenProps<
     RootStackParamList,
@@ -27,7 +27,7 @@ const QueryScreen = ({ navigation }: RouteProps) => {
                 <View className="flex-1 items-center justify-center">
                     <ActivityIndicator size="large" />
                     <Text className="mt-3 text-text-secondary">
-                        Loading posts…
+                        Loading posts… 
                     </Text>
                 </View>
             </ScreenWrapper>
@@ -76,7 +76,7 @@ const QueryScreen = ({ navigation }: RouteProps) => {
                 }
                 renderItem={({ item }) => (
                     <View className="mb-4 rounded-xl bg-card border border-border p-4">
-                        <Text className="text-text font-semibold mb-1">
+                        <Text className="text-lg text-text font-semibold mb-1">
                             {item.title}
                         </Text>
                         <Text className="text-text-secondary text-sm leading-5">

@@ -3,10 +3,10 @@ import { View, Text } from "react-native"
 import type { NativeStackScreenProps } from "@react-navigation/native-stack"
 import type { RootStackParamList } from "@/src/navigators/index.ts"
 import { useUniwind } from "uniwind"
-import { Button } from "../component/ui/Button"
-import ScreenWrapper from "../component/ui/ScreenWrapper"
 import { useAppTheme } from "../providers/useAppTheme"
-import Icon from "../component/ui/Icon";
+import Icon from "../components/ui/Icon"
+import ScreenWrapper from "../components/ui/ScreenWrapper"
+import Button from "../components/ui/Button"
 
 type RouteProps = NativeStackScreenProps<RootStackParamList, "Home">;
 

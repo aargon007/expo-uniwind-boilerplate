@@ -4,11 +4,11 @@ import { useFonts } from "expo-font";
 import * as SplashScreen from 'expo-splash-screen';
 import { NavigationContainer } from '@react-navigation/native';
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { SafeAreaProvider } from "react-native-safe-area-context";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ThemeProvider } from '@/src/providers/ThemeProvider';
 import RootNavigator from "./src/navigators/RootNavigator";
-import { withUniwind } from "uniwind";
+import { ErrorBoundary } from "./src/components/shared/ErrorBoundary";
+import { View } from "react-native";
 
 const queryClient = new QueryClient();
 
@@ -32,19 +32,27 @@ export default function App() {
     return null;
   };
 
-  const StyledSafeAreaProvider = withUniwind(SafeAreaProvider);
+  // const StyledSafeAreaProvider = withUniwind(SafeAreaProvider);
 
   return (
-    <StyledSafeAreaProvider className="flex-1 bg-bg">
+    <View className="flex-1 bg-bg">
       <ThemeProvider>
-        <QueryClientProvider client={queryClient}>
-          <GestureHandlerRootView style={{ flex: 1 }}>
-            <NavigationContainer>
-              <RootNavigator />
-            </NavigationContainer>
-          </GestureHandlerRootView>
-        </QueryClientProvider>
+        <ErrorBoundary
+          onError={(error, errorInfo) => {
+            // Log to your error tracking service
+            console.error('App Error:', error);
+            console.error('Error Info:', errorInfo);
+          }}
+        >
+          <QueryClientProvider client={queryClient}>
+            <GestureHandlerRootView style={{ flex: 1 }}>
+              <NavigationContainer>
+                <RootNavigator />
+              </NavigationContainer>
+            </GestureHandlerRootView>
+          </QueryClientProvider>
+        </ErrorBoundary>
       </ThemeProvider>
-    </StyledSafeAreaProvider>
+    </View>
   );
 }
