@@ -65,8 +65,7 @@
           "backgroundColor": "#090909"
         }
       ],
-      "react-native-edge-to-edge",
-      "expo-sqlite"
+      "react-native-edge-to-edge"
     ],
     "extra": {
       "eas": {
