@@ -1,13 +1,13 @@
 import "./global.css"
 import { useEffect } from 'react';
 import { useFonts } from "expo-font";
+import { useColorScheme, View } from "react-native";
 import * as SplashScreen from 'expo-splash-screen';
-import { NavigationContainer } from '@react-navigation/native';
+import { DarkTheme, DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import RootNavigator from "./src/navigators/RootNavigator";
 import { ErrorBoundary } from "./src/components/shared/ErrorBoundary";
-import { View } from "react-native";
 
 const queryClient = new QueryClient();
 
@@ -15,7 +15,7 @@ const queryClient = new QueryClient();
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
-
+  const scheme = useColorScheme();
   const [loaded] = useFonts({
     "Inter": require("@/assets/fonts/Inter-Black.otf"),
   });
@@ -42,7 +42,7 @@ export default function App() {
       >
         <QueryClientProvider client={queryClient}>
           <GestureHandlerRootView style={{ flex: 1 }}>
-            <NavigationContainer>
+            <NavigationContainer theme={scheme === 'dark' ? DarkTheme : DefaultTheme}>
               <RootNavigator />
             </NavigationContainer>
           </GestureHandlerRootView>

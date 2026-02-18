@@ -1706,10 +1706,10 @@
     use-latest-callback "^0.2.4"
     use-sync-external-store "^1.5.0"
 
-"@react-navigation/native-stack@^7.12.0":
-  version "7.12.0"
-  resolved "https://registry.yarnpkg.com/@react-navigation/native-stack/-/native-stack-7.12.0.tgz#0511234ac6030ed6d716561a380cb2225541373c"
-  integrity sha512-XmNJsPshjkNsahgbxNgGWQUq4s1l6HqH/Fei4QsjBNn/0mTvVrRVZwJ1XrY9YhWYvyiYkAN6/OmarWQaQJ0otQ==
+"@react-navigation/native-stack@^7.13.0":
+  version "7.13.0"
+  resolved "https://registry.yarnpkg.com/@react-navigation/native-stack/-/native-stack-7.13.0.tgz#a85a142ca9ce34a86147c5f36a956c3324e32238"
+  integrity sha512-5OOp1IKEd5woHl9hGBU0qCAfrQ4+7Tqej0HzDzGQeXzS8tg9gq84x1qUdRvFk5BXbhuAyvJliY9F1/I07d2X0A==
   dependencies:
     "@react-navigation/elements" "^2.9.5"
     color "^4.2.3"
@@ -1868,10 +1868,10 @@
   resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-5.90.20.tgz#e12128e39210715d4ce4fb299c33498ac297771e"
   integrity sha512-OMD2HLpNouXEfZJWcKeVKUgQ5n+n3A2JFmBaScpNDUqSrQSjiveC7dKMe53uJUg1nDG16ttFPz2xfilz6i2uVg==
 
-"@tanstack/react-query@^5.90.20":
-  version "5.90.20"
-  resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-5.90.20.tgz#42bb7018bfedc72f216b6e9b4052c919063f350b"
-  integrity sha512-vXBxa+qeyveVO7OA0jX1z+DeyCA4JKnThKv411jd5SORpBKgkcVnYKCiBgECvADvniBX7tobwBmg01qq9JmMJw==
+"@tanstack/react-query@^5.90.21":
+  version "5.90.21"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-5.90.21.tgz#e0eb40831a76510be438109435b8807ef63ab1b9"
+  integrity sha512-0Lu6y5t+tvlTJMTO7oh5NSpJfpg/5D41LlThfepTixPYkJ0sE2Jj0m0f6yYqujBwIXlId87e234+MxG3D3g7kg==
   dependencies:
     "@tanstack/query-core" "5.90.20"
 
@@ -6999,10 +6999,10 @@ unique-string@~2.0.0:
   dependencies:
     crypto-random-string "^2.0.0"
 
-uniwind@^1.3.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/uniwind/-/uniwind-1.3.0.tgz#2be344d7f7b7f4d75b8434d5937f8f70bc4cb9da"
-  integrity sha512-Ce4WKX0F3FBhmltiT5gG5ULJzDxnAjOt92+YxCAenuu1hcG3VAJnM8/YX/w69iXuldFTinGBIEIkdoe1Ysum7w==
+uniwind@^1.3.2:
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/uniwind/-/uniwind-1.3.2.tgz#351953ce5096b53ec4e0dafb8554caf3276b054c"
+  integrity sha512-DKOa8E5DkTknAshp/mvQMDeIzERq7ntq59ztyEthuXT845zdp7GijpPu4hQwY9BVMKHT3IkmNM09J1kg1Tirvw==
   dependencies:
     "@tailwindcss/node" "4.1.17"
     "@tailwindcss/oxide" "4.1.17"
