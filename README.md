@@ -11,19 +11,19 @@ Created by [Md Muhaiminul](https://www.linkedin.com/in/aargon007).
 
 1. Install dependencies:
     ```bash
-    yarn install
+    pnpm install
     ```
 2. Start the development server:
     ```bash
-    yarn start
+    pnpm start
     ```
 
 ## Scripts
 
-- `npm start`: Start the Expo development server.
-- `npm run android`: Run on Android.
-- `npm run ios`: Run on iOS.
-- `npm run web`: Run on Web.
-- `npm run web:build`: Export for Web.
-- `npm run web:preview`: Preview the exported web project.
-- `npm run ts:check`: Run TypeScript type checking.
+- `pnpm start`: Start the Expo development server.
+- `pnpm run android`: Run on Android.
+- `pnpm run ios`: Run on iOS.
+- `pnpm run web`: Run on Web.
+- `pnpm run web:build`: Export for Web.
+- `pnpm run web:preview`: Preview the exported web project.
+- `pnpm run ts:check`: Run TypeScript type checking.
