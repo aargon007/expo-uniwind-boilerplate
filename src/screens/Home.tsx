@@ -1,7 +1,7 @@
 import React from "react"
 import { View, Text } from "react-native"
 import type { NativeStackScreenProps } from "@react-navigation/native-stack"
-import type { RootStackParamList } from "@/src/navigators/index.ts"
+import type { RootStackParamList } from "@/src/navigators/RootStackParamList"
 import { Uniwind, useUniwind } from "uniwind"
 import Icon from "../components/ui/Icon"
 import Button from "../components/ui/Button"

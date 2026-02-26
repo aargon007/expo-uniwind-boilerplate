@@ -4,7 +4,6 @@
     "slug": "uniwind",
     "version": "1.0.0",
     "scheme": "uniwind",
-    "newArchEnabled": true,
     "orientation": "portrait",
     "userInterfaceStyle": "automatic",
     "icon": "./assets/icon.png",

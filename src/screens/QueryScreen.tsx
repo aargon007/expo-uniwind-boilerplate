@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, FlatList, ActivityIndicator } from "react-native";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
-import type { RootStackParamList } from "@/src/navigators";
+import type { RootStackParamList } from "@/src/navigators/RootStackParamList";
 import ScreenWrapper from "../components/ui/ScreenWrapper";
 import { useGetPosts } from "../hooks/posts/useGetPosts";
 import ScreenHeader from "../components/shared/ScreenHeader";
@@ -27,7 +27,7 @@ const QueryScreen = ({ navigation }: RouteProps) => {
                 <View className="flex-1 items-center justify-center">
                     <ActivityIndicator size="large" />
                     <Text className="mt-3 text-text-secondary">
-                        Loading posts… 
+                        Loading posts…
                     </Text>
                 </View>
             </ScreenWrapper>

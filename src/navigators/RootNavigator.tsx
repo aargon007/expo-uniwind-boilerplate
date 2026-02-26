@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { type NavigationProp } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import type { RootStackParamList } from './';
+import type { RootStackParamList } from './RootStackParamList';
 import Profile from '@/src/screens/Profile';
 import Home from '@/src/screens/Home';
 import TextScreen from '../screens/TextScreen';
