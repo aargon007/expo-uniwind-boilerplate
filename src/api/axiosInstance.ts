@@ -36,7 +36,7 @@ const useAxiosInstance = () => {
                     error.response &&
                     (error.response.status === 401 || error.response.status === 403)
                 ) {
-                    navigate("Home");
+                    navigate("MainTabs", { screen: "Home" });
                 }
                 return Promise.reject(error);
             }

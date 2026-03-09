@@ -40,6 +40,10 @@
 		@variant light {
 			--color-primary: var(--primary-700);
 			--color-primary-hover: var(--primary-800);
+			--color-on-primary: var(--white);
+			--color-on-primary-muted: var(--grey-100);
+			--color-on-primary-surface: color-mix(in srgb, var(--white) 18%, transparent);
+			--color-on-primary-outline: color-mix(in srgb, var(--white) 45%, transparent);
 			
 			--color-bg: var(--white);
 			--color-bg-secondary: var(--grey-50);
@@ -62,6 +66,10 @@
 		@variant dark {
 			--color-primary: var(--primary-600);
 			--color-primary-hover: var(--primary-500);
+			--color-on-primary: var(--white);
+			--color-on-primary-muted: var(--grey-100);
+			--color-on-primary-surface: color-mix(in srgb, var(--white) 18%, transparent);
+			--color-on-primary-outline: color-mix(in srgb, var(--white) 45%, transparent);
 			
 			--color-bg: var(--grey-950);
 			--color-bg-secondary: var(--grey-900);

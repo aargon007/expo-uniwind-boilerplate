@@ -1,13 +1,19 @@
 import React from "react"
 import { View, Text } from "react-native"
+import type { CompositeScreenProps } from "@react-navigation/native"
 import type { NativeStackScreenProps } from "@react-navigation/native-stack"
+import type { BottomTabScreenProps } from "@react-navigation/bottom-tabs"
 import type { RootStackParamList } from "@/src/navigators/RootStackParamList"
+import type { BottomTabParamList } from "@/src/navigators/BottomTabParamList"
 import { Uniwind, useUniwind } from "uniwind"
 import Icon from "../components/ui/Icon"
 import Button from "../components/ui/Button"
 import ScreenWrapper from "../components/ui/ScreenWrapper"
 
-type RouteProps = NativeStackScreenProps<RootStackParamList, "Home">;
+type RouteProps = CompositeScreenProps<
+    BottomTabScreenProps<BottomTabParamList, "Home">,
+    NativeStackScreenProps<RootStackParamList>
+>;
 
 const HomeScreen = ({ navigation }: RouteProps) => {
     const { theme } = useUniwind();

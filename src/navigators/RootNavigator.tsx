@@ -2,10 +2,9 @@ import * as React from 'react';
 import { type NavigationProp } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import type { RootStackParamList } from './RootStackParamList';
-import Profile from '@/src/screens/Profile';
-import Home from '@/src/screens/Home';
 import TextScreen from '../screens/TextScreen';
 import QueryScreen from '../screens/QueryScreen';
+import BottomTabNavigator from "./BottomTabNavigator";
 
 export type StackNavigation = NavigationProp<RootStackParamList>;
 
@@ -20,11 +19,11 @@ const RootNavigator = () => {
                 animation: "slide_from_right",
                 animationDuration: 150
             }}
-            initialRouteName="Home"
+            initialRouteName="MainTabs"
         >
             <Stack.Screen
-                name="Home"
-                component={Home}
+                name="MainTabs"
+                component={BottomTabNavigator}
                 options={{
                     headerShown: false,
                 }}
@@ -46,16 +45,6 @@ const RootNavigator = () => {
                 }}
             />
 
-            <Stack.Screen
-                name="Profile"
-                component={Profile}
-                options={{
-                    animation: 'slide_from_right',
-                    animationDuration: 150,
-                    gestureEnabled: false,
-                    autoHideHomeIndicator: true,
-                }}
-            />
         </Stack.Navigator>
     );
 };

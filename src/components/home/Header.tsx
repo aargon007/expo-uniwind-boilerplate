@@ -16,7 +16,7 @@ export default function Header() {
                 backgroundColor: 'red',
                 paddingHorizontal: 10,
             }}
-            onPress={() => navigate('Profile')}
+            onPress={() => navigate('MainTabs', { screen: 'Profile' })}
         >
 
         </TouchableOpacity>

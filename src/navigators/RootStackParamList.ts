@@ -1,11 +1,11 @@
-export type ScreenNames = ['Home', 'Profile', 'TextScreen'];
+import type { NavigatorScreenParams } from "@react-navigation/native";
+import type { BottomTabParamList } from "./BottomTabParamList";
+
+export type ScreenNames = ["MainTabs", "TextScreen"];
 
 export type RootStackParamList = {
-    Home: undefined;
-    Profile: undefined;
-    // ui test
-    TextScreen:undefined;
-    QueryScreen:undefined;
-    StateScreen:undefined;
-
+    MainTabs: NavigatorScreenParams<BottomTabParamList>;
+    TextScreen: undefined;
+    QueryScreen: undefined;
+    StateScreen: undefined;
 };

@@ -37,7 +37,6 @@ export default function App() {
         onError={(error, errorInfo) => {
           // Log to your error tracking service
           console.error('App Error:', error);
-          console.error('Error Info:', errorInfo);
         }}
       >
         <QueryClientProvider client={queryClient}>
