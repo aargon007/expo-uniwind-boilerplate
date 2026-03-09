@@ -1,5 +1,6 @@
 import React from "react";
 import { ScrollView, TouchableOpacity, View } from "react-native";
+import { useUniwind } from "uniwind";
 import ScreenWrapper from "../components/ui/ScreenWrapper";
 import Text from "../components/ui/Text";
 import Icon from "../components/ui/Icon";
@@ -39,11 +40,14 @@ const settings = [
 ];
 
 const Profile = () => {
+    const { theme } = useUniwind();
+
     return (
-        <ScreenWrapper>
+        <ScreenWrapper withBottomInset={false}>
             <ScrollView
+                key={theme}
                 showsVerticalScrollIndicator={false}
-                contentContainerClassName="px-5 pb-10 gap-5"
+                contentContainerClassName="px-5 pb-4 gap-5"
             >
                 <View className="mt-2 rounded-3xl bg-primary p-5">
                     <View className="flex-row items-center justify-between">

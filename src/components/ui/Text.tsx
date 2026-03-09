@@ -4,7 +4,16 @@ import { cn } from '@/src/utils/cn';
 
 export type TextVariant = 'h1' | 'h2' | 'h3' | 'h4' | 'body' | 'body-sm' | 'caption' | 'label';
 export type TextWeight = 'normal' | 'medium' | 'semibold' | 'bold';
-export type TextColor = 'primary' | 'secondary' | 'tertiary' | 'success' | 'warning' | 'error' | 'info';
+export type TextColor =
+    | 'primary'
+    | 'secondary'
+    | 'tertiary'
+    | 'on-primary'
+    | 'on-primary-muted'
+    | 'success'
+    | 'warning'
+    | 'error'
+    | 'info';
 
 export interface UITextProps extends RNTextProps {
     variant?: TextVariant;
@@ -36,6 +45,8 @@ const colorClasses: Record<TextColor, string> = {
     primary: 'text-text',
     secondary: 'text-text-secondary',
     tertiary: 'text-text-tertiary',
+    'on-primary': 'text-on-primary',
+    'on-primary-muted': 'text-on-primary-muted',
     success: 'text-success',
     warning: 'text-warning',
     error: 'text-error',

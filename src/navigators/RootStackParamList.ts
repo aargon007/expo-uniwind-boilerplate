@@ -1,5 +1,5 @@
 import type { NavigatorScreenParams } from "@react-navigation/native";
-import type { BottomTabParamList } from "./BottomTabParamList";
+import type { BottomTabParamList } from "./BottomTabNavigator";
 
 export type ScreenNames = ["MainTabs", "TextScreen"];
 

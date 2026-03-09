@@ -2,7 +2,12 @@ import React from 'react'
 import { View } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-const ScreenWrapper = ({ children }: { children: React.ReactNode }) => {
+interface ScreenWrapperProps {
+    children: React.ReactNode;
+    withBottomInset?: boolean;
+}
+
+const ScreenWrapper = ({ children, withBottomInset = true }: ScreenWrapperProps) => {
     const insets = useSafeAreaInsets();
 
     return (
@@ -10,15 +15,10 @@ const ScreenWrapper = ({ children }: { children: React.ReactNode }) => {
             style={{
                 flex: 1,
                 paddingTop: insets.top,
-                paddingBottom: insets.bottom
+                paddingBottom: withBottomInset ? insets.bottom : 0
             }}
             className='bg-bg'
         >
-            {/* <StatusBar
-                barStyle={UnistylesRuntime.themeName === 'light' ? 'dark-content' : 'light-content'}
-                backgroundColor={theme.colors.background}
-            /> */}
-            
             {children}
         </View>
     )

@@ -35,7 +35,7 @@ const textSizeClasses: Record<ButtonSize, string> = {
 const variantClasses: Record<ButtonVariant, string> = {
     primary: 'bg-primary active:bg-primary-hover',
     secondary: 'bg-bg-secondary active:bg-border-strong',
-    outline: 'border border-border-strong active:bg-bg-secondary',
+    outline: 'border border-border-strong active:opacity-85',
     ghost: 'bg-transparent active:bg-bg-secondary',
     success: 'bg-success active:opacity-90',
     error: 'bg-error active:opacity-90',

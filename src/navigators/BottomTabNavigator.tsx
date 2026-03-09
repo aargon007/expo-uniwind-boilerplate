@@ -2,11 +2,15 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Platform } from "react-native";
 import { useUniwind } from "uniwind";
-import type { BottomTabParamList } from "./BottomTabParamList";
 import Home from "@/src/screens/Home";
 import Profile from "@/src/screens/Profile";
 import Icon from "@/src/components/ui/Icon";
 import type { IconName } from "@/src/components/ui/Icon";
+
+export type BottomTabParamList = {
+    Home: undefined;
+    Profile: undefined;
+};
 
 const Tab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -32,7 +36,7 @@ const BottomTabNavigator = () => {
                 headerShown: false,
                 // Core tab-bar behavior
                 lazy: true,
-                freezeOnBlur: true,
+                freezeOnBlur: false,
                 popToTopOnBlur: true,
                 tabBarHideOnKeyboard: true,
                 tabBarShowIcon: true,
