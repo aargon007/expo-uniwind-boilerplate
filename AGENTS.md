@@ -28,6 +28,11 @@ All UI code should prioritize theme-safe, semantic styling.
 - Keep typography consistent via `src/components/ui/Text.tsx` variants.
 - Icons should use semantic text classes (`text-text`, `text-on-primary`, etc.) instead of hardcoded `color` values.
 
+## Toast Conventions
+- Use the shared `src/components/shared/ToastProvider.tsx` root `Toaster`; do not mount screen-level toasters.
+- Trigger notifications with `toast(...)` / `toast.success(...)` from `sonner-native`.
+- Toast examples and demos should use semantic copy that makes the trigger source clear, especially when testing inside modals.
+
 ## Navigation Conventions
 - Root stack route for tabs is `MainTabs`.
 - Tab routes are typed via `BottomTabParamList`.

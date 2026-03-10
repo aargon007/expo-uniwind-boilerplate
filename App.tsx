@@ -5,13 +5,15 @@ import { useColorScheme, View } from "react-native";
 import * as SplashScreen from 'expo-splash-screen';
 import { DarkTheme, DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import RootNavigator from "./src/navigators/RootNavigator";
 import { ErrorBoundary } from "./src/components/shared/ErrorBoundary";
+import ToastProvider from "./src/components/shared/ToastProvider";
 
 const queryClient = new QueryClient();
 
-// Keep the splash screen visible while we fetch resources
+// Keep the splash screen visible while fetch resources
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
@@ -40,11 +42,14 @@ export default function App() {
         }}
       >
         <QueryClientProvider client={queryClient}>
-          <GestureHandlerRootView style={{ flex: 1 }}>
-            <NavigationContainer theme={scheme === 'dark' ? DarkTheme : DefaultTheme}>
-              <RootNavigator />
-            </NavigationContainer>
-          </GestureHandlerRootView>
+          <SafeAreaProvider>
+            <GestureHandlerRootView style={{ flex: 1 }}>
+              <NavigationContainer theme={scheme === 'dark' ? DarkTheme : DefaultTheme}>
+                <RootNavigator />
+              </NavigationContainer>
+              <ToastProvider />
+            </GestureHandlerRootView>
+          </SafeAreaProvider>
         </QueryClientProvider>
       </ErrorBoundary>
     </View>
