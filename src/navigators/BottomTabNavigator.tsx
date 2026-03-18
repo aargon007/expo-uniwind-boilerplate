@@ -1,6 +1,8 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Platform } from "react-native";
+import { useTheme } from "@react-navigation/native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useUniwind } from "uniwind";
 import Home from "@/src/screens/Home";
 import Profile from "@/src/screens/Profile";
@@ -16,21 +18,16 @@ const Tab = createBottomTabNavigator<BottomTabParamList>();
 
 const BottomTabNavigator = () => {
     const { theme } = useUniwind();
-    const isDark = theme === "dark";
-
-    const colors = {
-        activeTint: isDark ? "#F9FAFB" : "#111827",
-        inactiveTint: isDark ? "#9CA3AF" : "#6B7280",
-        activeBg: isDark ? "#1F2937" : "#E5E7EB",
-        inactiveBg: "transparent",
-        barBg: isDark ? "#111827" : "#FFFFFF",
-        border: isDark ? "#374151" : "#E5E7EB",
-        badgeBg: isDark ? "#F87171" : "#DC2626",
-        badgeText: "#FFFFFF",
-    };
+    const navigationTheme = useTheme();
+    const insets = useSafeAreaInsets();
+    const isAndroid = Platform.OS === "android";
+    const androidBottomInset = isAndroid ? Math.max(insets.bottom, 16) : insets.bottom;
+    const bottomPadding = isAndroid ? androidBottomInset : Math.max(insets.bottom, 20);
+    const tabBarHeight = (isAndroid ? 56 : 60) + bottomPadding;
 
     return (
         <Tab.Navigator
+            key={theme}
             initialRouteName="Home"
             screenOptions={({ route }) => ({
                 headerShown: false,
@@ -41,50 +38,42 @@ const BottomTabNavigator = () => {
                 tabBarHideOnKeyboard: true,
                 tabBarShowIcon: true,
                 tabBarShowLabel: true,
-                tabBarLabelPosition: "below-icon",
                 tabBarAllowFontScaling: false,
                 tabBarAccessibilityLabel: `${route.name} tab`,
                 tabBarButtonTestID: `${route.name.toLowerCase()}-tab-button`,
 
                 // Colors
-                tabBarActiveTintColor: colors.activeTint,
-                tabBarInactiveTintColor: colors.inactiveTint,
-                // tabBarActiveBackgroundColor: colors.activeBg,
-                // tabBarInactiveBackgroundColor: colors.inactiveBg,
+                tabBarActiveTintColor: navigationTheme.colors.text,
+                tabBarInactiveTintColor: navigationTheme.colors.border,
 
                 // Label style (size/weight/case/spacing)
                 tabBarLabelStyle: {
                     fontSize: 12,
                     fontWeight: "700",
-                    marginBottom: 2,
+                    marginBottom: isAndroid ? 4 : 2,
                     letterSpacing: 0.2,
                     textTransform: "none",
                 },
 
                 // Icon/item layout
                 tabBarIconStyle: {
-                    marginTop: 4,
+                    marginTop: isAndroid ? 2 : 4,
                 },
                 tabBarItemStyle: {
-                    marginHorizontal: 6,
-                    marginVertical: 6,
-                    borderRadius: 12,
-                    paddingVertical: 2,
+                    paddingTop: isAndroid ? 6 : 4,
+                    paddingBottom: isAndroid ? 4 : 0,
                 },
 
                 // Container style
                 tabBarStyle: {
-                    height: Platform.OS === "ios" ? 84 : 64,
-                    paddingTop: 4,
-                    paddingBottom: Platform.OS === "ios" ? 20 : 8,
+                    height: tabBarHeight,
+                    paddingTop: isAndroid ? 6 : 4,
+                    paddingBottom: bottomPadding,
                     borderTopWidth: 1,
-                    borderTopColor: colors.border,
-                    backgroundColor: colors.barBg,
-                    elevation: 8,
-                    shadowColor: "#000000",
-                    shadowOffset: { width: 0, height: -2 },
-                    shadowOpacity: 0.08,
-                    shadowRadius: 8,
+                    borderTopColor: navigationTheme.colors.border,
+                    backgroundColor: navigationTheme.colors.card,
+                    elevation: isAndroid ? 0 : undefined,
+                    shadowOpacity: isAndroid ? 0 : 0.08,
                 },
 
                 tabBarIcon: ({ focused, size, color }) => {
@@ -110,8 +99,8 @@ const BottomTabNavigator = () => {
                     tabBarLabel: "Home",
                     tabBarBadge: 2,
                     tabBarBadgeStyle: {
-                        backgroundColor: colors.badgeBg,
-                        color: colors.badgeText,
+                        backgroundColor: navigationTheme.colors.notification,
+                        color: navigationTheme.colors.card,
                         fontSize: 10,
                         fontWeight: "700",
                     },

@@ -6,24 +6,23 @@ A React Native Expo boilerplate with TypeScript support.
 
 Created by [Md Muhaiminul](https://www.linkedin.com/in/aargon007).
 
-
 ## Getting Started
 
 1. Install dependencies:
     ```bash
-    pnpm install
+    yarn install
     ```
 2. Start the development server:
     ```bash
-    pnpm start
+    yarn start
     ```
 
 ## Scripts
 
-- `pnpm start`: Start the Expo development server.
-- `pnpm run android`: Run on Android.
-- `pnpm run ios`: Run on iOS.
-- `pnpm run web`: Run on Web.
-- `pnpm run web:build`: Export for Web.
-- `pnpm run web:preview`: Preview the exported web project.
-- `pnpm run ts:check`: Run TypeScript type checking.
+- `yarn start`: Start the Expo development server.
+- `yarn run android`: Run on Android.
+- `yarn run ios`: Run on iOS.
+- `yarn run web`: Run on Web.
+- `yarn run web:build`: Export for Web.
+- `yarn run web:preview`: Preview the exported web project.
+- `yarn run ts:check`: Run TypeScript type checking.
