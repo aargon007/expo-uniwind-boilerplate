@@ -1,13 +1,13 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Platform } from "react-native";
-import { useTheme } from "@react-navigation/native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useTheme } from "@react-navigation/native";
 import { useUniwind } from "uniwind";
 import Home from "@/src/screens/Home";
 import Profile from "@/src/screens/Profile";
 import Icon from "@/src/components/ui/Icon";
 import type { IconName } from "@/src/components/ui/Icon";
+import { getTabBarHeight, TAB_ICON_SIZE } from "../constants/variable";
 
 export type BottomTabParamList = {
     Home: undefined;
@@ -20,10 +20,11 @@ const BottomTabNavigator = () => {
     const { theme } = useUniwind();
     const navigationTheme = useTheme();
     const insets = useSafeAreaInsets();
-    const isAndroid = Platform.OS === "android";
-    const androidBottomInset = isAndroid ? Math.max(insets.bottom, 16) : insets.bottom;
-    const bottomPadding = isAndroid ? androidBottomInset : Math.max(insets.bottom, 20);
-    const tabBarHeight = (isAndroid ? 56 : 60) + bottomPadding;
+
+    const tabBarHeight = getTabBarHeight({
+        baseHeight: 55,
+        bottomInset: insets.bottom,
+    });
 
     return (
         <Tab.Navigator
@@ -31,6 +32,7 @@ const BottomTabNavigator = () => {
             initialRouteName="Home"
             screenOptions={({ route }) => ({
                 headerShown: false,
+                animation: "shift",
                 // Core tab-bar behavior
                 lazy: true,
                 freezeOnBlur: false,
@@ -45,49 +47,46 @@ const BottomTabNavigator = () => {
                 // Colors
                 tabBarActiveTintColor: navigationTheme.colors.text,
                 tabBarInactiveTintColor: navigationTheme.colors.border,
-
-                // Label style (size/weight/case/spacing)
+                tabBarActiveBackgroundColor: navigationTheme.colors.card,
+                tabBarInactiveBackgroundColor: navigationTheme.colors.card,
+                
+                // container style
+                tabBarStyle: {
+                    borderTopWidth: 0.5,
+                    borderTopColor: navigationTheme.colors.border,
+                    backgroundColor: navigationTheme.colors.card,
+                    height: tabBarHeight,
+                },
+                // item style
+                tabBarItemStyle: {
+                    paddingTop: 4,
+                },
+                // label style (size/weight/case/spacing)
                 tabBarLabelStyle: {
                     fontSize: 12,
-                    fontWeight: "700",
-                    marginBottom: isAndroid ? 4 : 2,
+                    fontWeight: "600",
                     letterSpacing: 0.2,
                     textTransform: "none",
                 },
 
-                // Icon/item layout
-                tabBarIconStyle: {
-                    marginTop: isAndroid ? 2 : 4,
-                },
-                tabBarItemStyle: {
-                    paddingTop: isAndroid ? 6 : 4,
-                    paddingBottom: isAndroid ? 4 : 0,
-                },
-
-                // Container style
-                tabBarStyle: {
-                    height: tabBarHeight,
-                    paddingTop: isAndroid ? 6 : 4,
-                    paddingBottom: bottomPadding,
-                    borderTopWidth: 1,
-                    borderTopColor: navigationTheme.colors.border,
-                    backgroundColor: navigationTheme.colors.card,
-                    elevation: isAndroid ? 0 : undefined,
-                    shadowOpacity: isAndroid ? 0 : 0.08,
-                },
-
-                tabBarIcon: ({ focused, size, color }) => {
+                tabBarIcon: ({ focused, color }) => {
                     let iconName: IconName = "ellipse";
 
                     if (route.name === "Home") {
-                        iconName = focused ? "home" : "home-outline";
+                        iconName = focused ? "home-sharp" : "home-outline";
                     }
 
                     if (route.name === "Profile") {
                         iconName = focused ? "person" : "person-outline";
                     }
 
-                    return <Icon name={iconName} size={size} color={color} />;
+                    return (
+                        <Icon
+                            name={iconName}
+                            size={TAB_ICON_SIZE}
+                            color={color}
+                        />
+                    );
                 },
             })}
         >
