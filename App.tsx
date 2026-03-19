@@ -8,9 +8,9 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { useUniwind } from "uniwind";
-import RootNavigator from "./src/navigators/RootNavigator";
-import { ErrorBoundary } from "./src/components/shared/ErrorBoundary";
-import ToastProvider from "./src/components/shared/ToastProvider";
+import RootNavigator from "./src/navigation/RootNavigator";
+import { ErrorBoundary } from "./src/shared/components/app/ErrorBoundary";
+import ToastProvider from "./src/shared/components/app/ToastProvider";
 
 const queryClient = new QueryClient();
 
