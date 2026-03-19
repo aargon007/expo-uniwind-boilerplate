@@ -1,7 +1,9 @@
 import React from "react";
-import { ActivityIndicator, FlatList, View } from "react-native";
+import { FlatList } from "react-native";
 import ScreenHeader from "@/src/shared/components/app/ScreenHeader";
+import Card from "@/src/shared/components/ui/Card";
 import ScreenWrapper from "@/src/shared/components/ui/ScreenWrapper";
+import StateView from "@/src/shared/components/ui/StateView";
 import Text from "@/src/shared/components/ui/Text";
 import type { RootStackScreenProps } from "@/src/navigation/types";
 import { useGetPosts } from "../hooks/useGetPosts";
@@ -20,12 +22,12 @@ const QueryScreen = (_props: QueryScreenProps) => {
     if (isLoading) {
         return (
             <ScreenWrapper>
-                <View className="flex-1 items-center justify-center">
-                    <ActivityIndicator size="large" />
-                    <Text className="mt-3" color="secondary">
-                        Loading posts...
-                    </Text>
-                </View>
+                <StateView
+                    fullScreen
+                    loading
+                    title="Loading posts"
+                    description="Fetching the latest posts for this demo query."
+                />
             </ScreenWrapper>
         );
     }
@@ -33,21 +35,14 @@ const QueryScreen = (_props: QueryScreenProps) => {
     if (isError) {
         return (
             <ScreenWrapper>
-                <View className="flex-1 items-center justify-center gap-3">
-                    <Text variant="body" weight="semibold">
-                        Something went wrong
-                    </Text>
-                    <Text color="secondary" className="px-6 text-center">
-                        {(error as Error)?.message || "Unable to load posts"}
-                    </Text>
-                    <Text
-                        className="text-primary"
-                        weight="semibold"
-                        onPress={() => refetch()}
-                    >
-                        Tap to retry
-                    </Text>
-                </View>
+                <StateView
+                    fullScreen
+                    iconName="alert-circle-outline"
+                    title="Something went wrong"
+                    description={(error as Error)?.message || "Unable to load posts"}
+                    actionLabel="Retry"
+                    onActionPress={() => refetch()}
+                />
             </ScreenWrapper>
         );
     }
@@ -62,19 +57,21 @@ const QueryScreen = (_props: QueryScreenProps) => {
                 showsVerticalScrollIndicator={false}
                 contentContainerClassName="p-4"
                 ListEmptyComponent={
-                    <View className="mt-20 items-center justify-center">
-                        <Text color="secondary">No posts available</Text>
-                    </View>
+                    <StateView
+                        iconName="document-text-outline"
+                        title="No posts available"
+                        description="Try refreshing or check back after data is available."
+                    />
                 }
                 renderItem={({ item }) => (
-                    <View className="mb-4 rounded-xl border border-border bg-card p-4">
+                    <Card className="mb-4" radius="xl">
                         <Text variant="body" weight="semibold" className="mb-1">
                             {item.title}
                         </Text>
                         <Text variant="body-sm" color="secondary" className="leading-5">
                             {item.body}
                         </Text>
-                    </View>
+                    </Card>
                 )}
             />
         </ScreenWrapper>

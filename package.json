@@ -39,6 +39,7 @@
     "axios": "^1.13.6",
     "clsx": "^2.1.1",
     "expo": "~55.0.5",
+    "expo-blur": "~55.0.10",
     "expo-constants": "~55.0.9",
     "expo-font": "~55.0.4",
     "expo-splash-screen": "~55.0.12",

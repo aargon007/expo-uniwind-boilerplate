@@ -1,7 +1,7 @@
 import { create } from "zustand";
-import type { User } from "@/src/shared/types/user";
+import type { User } from "../types";
 
-interface UserStore {
+export interface UserStore {
     user: User | null;
     setUser: (data: User | null) => void;
     clearUser: () => void;

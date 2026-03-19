@@ -2,8 +2,10 @@ import React from "react";
 import { ScrollView, TouchableOpacity, View } from "react-native";
 import { useUniwind } from "uniwind";
 import Button from "@/src/shared/components/ui/Button";
+import Card from "@/src/shared/components/ui/Card";
 import Icon from "@/src/shared/components/ui/Icon";
 import ScreenWrapper from "@/src/shared/components/ui/ScreenWrapper";
+import Section from "@/src/shared/components/ui/Section";
 import Text from "@/src/shared/components/ui/Text";
 
 const stats = [
@@ -49,7 +51,7 @@ const ProfileScreen = () => {
                 showsVerticalScrollIndicator={false}
                 contentContainerClassName="gap-5 px-5 pb-4"
             >
-                <View className="mt-2 rounded-3xl bg-primary p-5">
+                <Card variant="primary" radius="3xl" className="mt-2 p-5">
                     <View className="flex-row items-center justify-between">
                         <View className="h-14 w-14 items-center justify-center rounded-full bg-on-primary-surface">
                             <Icon name="person" size={30} textClassName="text-on-primary" />
@@ -83,49 +85,48 @@ const ProfileScreen = () => {
                             textClassName="text-on-primary"
                         />
                     </View>
-                </View>
+                </Card>
 
                 <View className="flex-row gap-3">
                     {stats.map((item) => (
-                        <View
+                        <Card
                             key={item.label}
-                            className="flex-1 items-center rounded-2xl border border-border bg-card p-4"
+                            className="flex-1 items-center"
                         >
                             <Text variant="h4">{item.value}</Text>
                             <Text variant="caption" color="secondary" className="mt-1">
                                 {item.label}
                             </Text>
-                        </View>
+                        </Card>
                     ))}
                 </View>
 
-                <View className="gap-3 rounded-2xl border border-border bg-card p-4">
-                    <Text variant="label" color="secondary">
-                        QUICK ACTIONS
-                    </Text>
-                    <View className="flex-row flex-wrap gap-2">
-                        <Button
-                            label="Activity"
-                            variant="ghost"
-                            size="sm"
-                            leftIcon={<Icon name="pulse-outline" size={16} textClassName="text-text" />}
-                        />
-                        <Button
-                            label="Bookmarks"
-                            variant="ghost"
-                            size="sm"
-                            leftIcon={<Icon name="bookmark-outline" size={16} textClassName="text-text" />}
-                        />
-                        <Button
-                            label="Support"
-                            variant="ghost"
-                            size="sm"
-                            leftIcon={<Icon name="headset-outline" size={16} textClassName="text-text" />}
-                        />
-                    </View>
-                </View>
+                <Card>
+                    <Section title="QUICK ACTIONS">
+                        <View className="flex-row flex-wrap gap-2">
+                            <Button
+                                label="Activity"
+                                variant="ghost"
+                                size="sm"
+                                leftIcon={<Icon name="pulse-outline" size={16} textClassName="text-text" />}
+                            />
+                            <Button
+                                label="Bookmarks"
+                                variant="ghost"
+                                size="sm"
+                                leftIcon={<Icon name="bookmark-outline" size={16} textClassName="text-text" />}
+                            />
+                            <Button
+                                label="Support"
+                                variant="ghost"
+                                size="sm"
+                                leftIcon={<Icon name="headset-outline" size={16} textClassName="text-text" />}
+                            />
+                        </View>
+                    </Section>
+                </Card>
 
-                <View className="overflow-hidden rounded-2xl border border-border bg-card">
+                <Card className="overflow-hidden" padded={false}>
                     {settings.map((item, index) => (
                         <TouchableOpacity
                             key={item.id}
@@ -150,7 +151,7 @@ const ProfileScreen = () => {
                             <Icon name="chevron-forward" size={18} textClassName="text-text-tertiary" />
                         </TouchableOpacity>
                     ))}
-                </View>
+                </Card>
             </ScrollView>
         </ScreenWrapper>
     );

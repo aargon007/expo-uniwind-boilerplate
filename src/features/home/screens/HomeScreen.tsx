@@ -3,8 +3,10 @@ import { Modal, Pressable, View } from "react-native";
 import { toast } from "sonner-native";
 import { Uniwind, useUniwind } from "uniwind";
 import Button from "@/src/shared/components/ui/Button";
+import Card from "@/src/shared/components/ui/Card";
 import Icon from "@/src/shared/components/ui/Icon";
 import ScreenWrapper from "@/src/shared/components/ui/ScreenWrapper";
+import Section from "@/src/shared/components/ui/Section";
 import Text from "@/src/shared/components/ui/Text";
 import type { MainTabScreenProps } from "@/src/navigation/types";
 
@@ -66,26 +68,27 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
                     Welcome back. Choose where you want to go.
                 </Text>
 
-                <View className="gap-3 rounded-2xl border border-border bg-card p-4">
-                    <Text weight="semibold">Toast test</Text>
-                    <Text variant="body-sm" color="secondary">
-                        Use these buttons to verify the global toaster on the home
-                        screen and from inside a modal.
-                    </Text>
+                <Card>
+                    <Section
+                        title="TOAST TEST"
+                        description="Use these buttons to verify the global toaster on the home screen and from inside a modal."
+                    >
+                        <View className="gap-3">
+                            <Button
+                                label="Show home toast"
+                                onPress={showHomeToast}
+                                width="full"
+                            />
 
-                    <Button
-                        label="Show home toast"
-                        onPress={showHomeToast}
-                        width="full"
-                    />
-
-                    <Button
-                        label="Open toast modal"
-                        onPress={() => setIsToastModalVisible(true)}
-                        width="full"
-                        variant="outline"
-                    />
-                </View>
+                            <Button
+                                label="Open toast modal"
+                                onPress={() => setIsToastModalVisible(true)}
+                                width="full"
+                                variant="outline"
+                            />
+                        </View>
+                    </Section>
+                </Card>
 
                 <Button
                     label="Text screen"
@@ -113,7 +116,7 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
                         onPress={() => setIsToastModalVisible(false)}
                     />
 
-                    <View className="w-full max-w-sm gap-4 rounded-3xl border border-border bg-card p-5">
+                    <Card className="w-full max-w-sm gap-4 p-5" radius="3xl">
                         <View className="gap-2">
                             <Text variant="h4">Toast modal</Text>
                             <Text variant="body-sm" color="secondary">
@@ -134,7 +137,7 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
                             width="full"
                             variant="ghost"
                         />
-                    </View>
+                    </Card>
                 </View>
             </Modal>
         </ScreenWrapper>
