@@ -1,6 +1,6 @@
 import React from "react";
 import { Text as RNText, type TextProps as RNTextProps } from "react-native";
-import { cn } from "@/src/shared/utils/cn";
+import { cn } from "@/src/utils/cn";
 
 export type TextVariant =
     | "h1"

@@ -1,6 +1,6 @@
 import { Alert } from "react-native";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useApiClient } from "@/src/shared/lib/client";
+import { useApiClient } from "@/src/lib/apiClient";
 import { createPost } from "../api/posts.api";
 import { queryKeys } from "../api/queryKeys";
 import type { Post } from "../types";

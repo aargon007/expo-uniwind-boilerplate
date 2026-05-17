@@ -8,7 +8,7 @@ import {
     type StyleProp,
     type ViewStyle,
 } from "react-native";
-import { cn } from "@/src/shared/utils/cn";
+import { cn } from "@/src/utils/cn";
 
 export type ButtonVariant =
     | "primary"

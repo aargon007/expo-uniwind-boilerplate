@@ -1,12 +1,12 @@
 import React from "react";
 import { ScrollView, TouchableOpacity, View } from "react-native";
 import { useUniwind } from "uniwind";
-import Button from "@/src/shared/components/ui/Button";
-import Card from "@/src/shared/components/ui/Card";
-import Icon from "@/src/shared/components/ui/Icon";
-import ScreenWrapper from "@/src/shared/components/ui/ScreenWrapper";
-import Section from "@/src/shared/components/ui/Section";
-import Text from "@/src/shared/components/ui/Text";
+import Button from "@/src/components/ui/Button";
+import Card from "@/src/components/ui/Card";
+import Icon from "@/src/components/ui/Icon";
+import ScreenWrapper from "@/src/components/ui/ScreenWrapper";
+import Section from "@/src/components/ui/Section";
+import Text from "@/src/components/ui/Text";
 
 const stats = [
     { label: "Projects", value: "24" },
@@ -131,9 +131,8 @@ const ProfileScreen = () => {
                         <TouchableOpacity
                             key={item.id}
                             activeOpacity={0.8}
-                            className={`flex-row items-center px-4 py-4 ${
-                                index !== settings.length - 1 ? "border-b border-border" : ""
-                            }`}
+                            className={`flex-row items-center px-4 py-4 ${index !== settings.length - 1 ? "border-b border-border" : ""
+                                }`}
                         >
                             <View className="h-10 w-10 items-center justify-center rounded-xl bg-bg-secondary">
                                 <Icon name={item.icon} size={20} textClassName="text-text" />

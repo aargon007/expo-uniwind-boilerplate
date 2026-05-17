@@ -1,8 +1,8 @@
 import React from "react";
 import { ScrollView } from "react-native";
-import ScreenHeader from "@/src/shared/components/app/ScreenHeader";
-import ScreenWrapper from "@/src/shared/components/ui/ScreenWrapper";
-import Text from "@/src/shared/components/ui/Text";
+import ScreenHeader from "@/src/components/shared/ScreenHeader";
+import ScreenWrapper from "@/src/components/ui/ScreenWrapper";
+import Text from "@/src/components/ui/Text";
 
 const TextScreen = () => {
     return (

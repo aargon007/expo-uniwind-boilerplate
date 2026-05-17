@@ -5,7 +5,7 @@ import {
     type TextInputProps,
 } from "react-native";
 import { useTheme } from "@react-navigation/native";
-import { cn } from "@/src/shared/utils/cn";
+import { cn } from "@/src/utils/cn";
 import Text from "./Text";
 
 type InputSize = "md" | "lg";

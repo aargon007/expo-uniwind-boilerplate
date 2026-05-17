@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { Modal, Pressable, View } from "react-native";
 import { toast } from "sonner-native";
 import { Uniwind, useUniwind } from "uniwind";
-import Button from "@/src/shared/components/ui/Button";
-import Card from "@/src/shared/components/ui/Card";
-import Icon from "@/src/shared/components/ui/Icon";
-import ScreenWrapper from "@/src/shared/components/ui/ScreenWrapper";
-import Section from "@/src/shared/components/ui/Section";
-import Text from "@/src/shared/components/ui/Text";
+import Button from "@/src/components/ui/Button";
+import Card from "@/src/components/ui/Card";
+import Icon from "@/src/components/ui/Icon";
+import ScreenWrapper from "@/src/components/ui/ScreenWrapper";
+import Section from "@/src/components/ui/Section";
+import Text from "@/src/components/ui/Text";
 import type { MainTabScreenProps } from "@/src/navigation/types";
 
 type HomeScreenProps = MainTabScreenProps<"Home">;

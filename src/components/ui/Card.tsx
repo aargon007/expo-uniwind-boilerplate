@@ -1,6 +1,6 @@
 import React from "react";
 import { View, type ViewProps } from "react-native";
-import { cn } from "@/src/shared/utils/cn";
+import { cn } from "@/src/utils/cn";
 
 type CardVariant = "default" | "primary" | "subtle";
 type CardRadius = "lg" | "xl" | "2xl" | "3xl";

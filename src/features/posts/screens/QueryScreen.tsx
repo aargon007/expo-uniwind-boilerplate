@@ -1,10 +1,10 @@
 import React from "react";
 import { FlatList } from "react-native";
-import ScreenHeader from "@/src/shared/components/app/ScreenHeader";
-import Card from "@/src/shared/components/ui/Card";
-import ScreenWrapper from "@/src/shared/components/ui/ScreenWrapper";
-import StateView from "@/src/shared/components/ui/StateView";
-import Text from "@/src/shared/components/ui/Text";
+import ScreenHeader from "@/src/components/shared/ScreenHeader";
+import Card from "@/src/components/ui/Card";
+import ScreenWrapper from "@/src/components/ui/ScreenWrapper";
+import StateView from "@/src/components/ui/StateView";
+import Text from "@/src/components/ui/Text";
 import type { RootStackScreenProps } from "@/src/navigation/types";
 import { useGetPosts } from "../hooks/useGetPosts";
 

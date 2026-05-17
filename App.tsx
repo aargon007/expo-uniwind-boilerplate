@@ -6,11 +6,11 @@ import { DarkTheme, DefaultTheme, NavigationContainer } from '@react-navigation/
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { QueryClientProvider } from '@tanstack/react-query'
-import { queryClient } from '@/src/shared/lib/queryClient'
+import { queryClient } from '@/src/lib/queryClient'
 import { useUniwind } from "uniwind";
 import RootNavigator from "./src/navigation/RootNavigator";
-import { ErrorBoundary } from "./src/shared/components/app/ErrorBoundary";
-import ToastProvider from "./src/shared/components/app/ToastProvider";
+import { ErrorBoundary } from "./src/components/shared/ErrorBoundary";
+import ToastProvider from "./src/components/shared/ToastProvider";
 
 // Keep the splash screen visible while fetch resources
 SplashScreen.preventAutoHideAsync();
