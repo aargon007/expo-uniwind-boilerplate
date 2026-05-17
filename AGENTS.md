@@ -10,27 +10,34 @@ feature-first folder structure.
 
 - Organize product code by feature under `src/features/<feature-name>`.
 - Keep navigation code in `src/navigation`.
-- Keep reusable cross-feature code in `src/shared`.
+- Keep **global** Zustand stores + their selector hooks in `src/store/`. Each file is one store.
+- Keep **feature-local** Zustand stores in `src/features/<domain>/store/` — only when state is truly scoped to that feature.
+- Keep reusable cross-feature UI in `src/components/` (`shared/` for app-level, `ui/` for primitives).
+- Keep shared library code (API client, query client) in `src/lib/`.
+- Keep shared utilities in `src/utils/`.
 - Keep generic constants in `src/constants`.
 - Keep global declaration files in `src/types`.
 - Do not add new code to old layer-style folders such as `src/screens`, `src/navigators`,
-  `src/components`, `src/hooks`, `src/utils`, or `src/api`.
+  `src/hooks`, or `src/api`. Do not create a `src/shared/` folder — it has been replaced by
+  the top-level `src/components/`, `src/lib/`, `src/store/`, and `src/utils/` folders.
 
 ### Current Structure
 
+- `src/features/home/components`
 - `src/features/home/screens`
 - `src/features/profile/screens`
 - `src/features/text/screens`
 - `src/features/posts/api`
 - `src/features/posts/hooks`
 - `src/features/posts/screens`
-- `src/features/user/store`
+- `src/store`               ← useUserStore.ts (global stores + selector hooks)
+- `src/components/shared`   ← ErrorBoundary, ScreenHeader, StatusBar, ToastProvider
+- `src/components/ui`       ← Button, Card, Icon, Input, ScreenWrapper, Section, StateView, Text
+- `src/lib`                 ← apiClient.ts, queryClient.ts
+- `src/utils`               ← cn.ts, validateEmail.ts
 - `src/navigation`
-- `src/shared/components/app`
-- `src/shared/components/ui`
-- `src/shared/lib/api`
-- `src/shared/types`
-- `src/shared/utils`
+- `src/constants`
+- `src/types`
 
 ## Core Rules
 
@@ -55,17 +62,17 @@ feature-first folder structure.
 
 ## Component Conventions
 
-- Reuse existing primitives from `src/shared/components/ui` (`Button`, `Text`, `Icon`, `ScreenWrapper`) before creating new ones.
-- Reuse app-level shared components from `src/shared/components/app` when applicable (`ScreenHeader`, `ToastProvider`, `ErrorBoundary`, `StatusBar`).
-- Keep typography consistent via `src/shared/components/ui/Text.tsx` variants.
+- Reuse existing primitives from `src/components/ui` (`Button`, `Text`, `Icon`, `ScreenWrapper`) before creating new ones.
+- Reuse app-level shared components from `src/components/shared` when applicable (`ScreenHeader`, `ToastProvider`, `ErrorBoundary`, `StatusBar`).
+- Keep typography consistent via `src/components/ui/Text.tsx` variants.
 - Icons should use semantic text classes (`text-text`, `text-on-primary`, etc.) instead of hardcoded `color` values.
-- Shared reusable utilities belong in `src/shared/utils`.
-- Shared reusable types belong in `src/shared/types`.
-- Feature-specific UI belongs inside that feature, not in `src/shared`.
+- Shared reusable utilities belong in `src/utils`.
+- Shared reusable types belong in `src/types`.
+- Feature-specific UI belongs inside that feature's `components/` subfolder, not in `src/components/`.
 
 ## Toast Conventions
 
-- Use the shared `src/shared/components/app/ToastProvider.tsx` root `Toaster`; do not mount screen-level toasters.
+- Use the shared `src/components/shared/ToastProvider.tsx` root `Toaster`; do not mount screen-level toasters.
 - Trigger notifications with `toast(...)` / `toast.success(...)` from `sonner-native`.
 - Toast examples and demos should use semantic copy that makes the trigger source clear, especially when testing inside modals.
 
@@ -81,11 +88,13 @@ feature-first folder structure.
 
 ## Data And State Conventions
 
-- Shared API client code belongs in `src/shared/lib/api`.
+- Shared API client belongs in `src/lib/apiClient.ts`; React Query client in `src/lib/queryClient.ts`.
 - Feature-specific API functions and query hooks belong inside the owning feature.
     - Example: `src/features/posts/api` and `src/features/posts/hooks`
-- Feature-specific state should live inside the owning feature when possible.
-    - Example: `src/features/user/store/useUserStore.ts`
+- **Global state** (auth, user session, app-wide settings) lives in `src/store/use<Domain>Store.ts`.
+    - Co-locate selector hooks in the same file — do not create a separate hooks file for them.
+    - Example: `src/store/useUserStore.ts` exports `useCurrentUser` and `useUserActions`.
+- **Feature-local state** (UI toggles, wizard steps, scoped filters) lives in `src/features/<domain>/store/`.
 - Shared infrastructure should not import navigation hooks unless it is explicitly navigation-related.
 
 ## Uniwind References
