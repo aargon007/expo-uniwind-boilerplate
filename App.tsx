@@ -5,6 +5,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { DarkTheme, DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { KeyboardProvider } from "react-native-keyboard-controller";
 import { QueryClientProvider } from '@tanstack/react-query'
 import { queryClient } from '@/src/lib/queryClient'
 import { useUniwind } from "uniwind";
@@ -35,14 +36,16 @@ export default function App() {
   return (
     <GestureHandlerRootView className="flex-1 bg-bg">
       <SafeAreaProvider>
-        <ErrorBoundary onError={(error) => console.error('App Error:', error)}>
-          <QueryClientProvider client={queryClient}>
-            <NavigationContainer theme={theme === 'dark' ? DarkTheme : DefaultTheme}>
-              <RootNavigator />
-              <ToastProvider />
-            </NavigationContainer>
-          </QueryClientProvider>
-        </ErrorBoundary>
+        <KeyboardProvider>
+          <ErrorBoundary onError={(error) => console.error('App Error:', error)}>
+            <QueryClientProvider client={queryClient}>
+              <NavigationContainer theme={theme === 'dark' ? DarkTheme : DefaultTheme}>
+                <RootNavigator />
+                <ToastProvider />
+              </NavigationContainer>
+            </QueryClientProvider>
+          </ErrorBoundary>
+        </KeyboardProvider>
       </SafeAreaProvider>
     </GestureHandlerRootView>
   );
