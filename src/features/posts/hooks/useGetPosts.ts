@@ -7,6 +7,7 @@ export const useGetPosts = () => {
     const apiClient = useApiClient();
 
     return useQuery({
+         
         queryKey: queryKeys.posts,
         queryFn: () => getPosts(apiClient),
     });

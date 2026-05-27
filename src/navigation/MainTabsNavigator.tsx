@@ -1,4 +1,3 @@
-import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useTheme } from "@react-navigation/native";
 import { useUniwind } from "uniwind";
@@ -6,8 +5,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import type { MainTabsParamList } from "./types";
 import HomeScreen from "@/src/features/home/screens/HomeScreen";
 import ProfileScreen from "@/src/features/profile/screens/ProfileScreen";
-import Icon from "@/src/components/ui/Icon";
-import type { IconName } from "@/src/components/ui/Icon";
+import Icon, { type IconName } from "@/src/components/ui/Icon";
 import { getTabBarHeight, TAB_ICON_SIZE } from "@/src/constants/variable";
 
 const Tab = createBottomTabNavigator<MainTabsParamList>();

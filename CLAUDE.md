@@ -2,6 +2,25 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Tech Stack
+
+| Layer | Package | Version |
+|-------|---------|---------|
+| Framework | Expo SDK | 56 |
+| Runtime | React Native | 0.85 |
+| Language | React | 19.2 |
+| Language | TypeScript | 6.0 |
+| JS Engine | Hermes v1 | default (RN 0.85+) |
+| Styling | Tailwind CSS v4 + Uniwind | — |
+| Navigation | @react-navigation v7 | stack + bottom-tabs |
+| Server state | @tanstack/react-query v5 | — |
+| Client state | Zustand v5 | — |
+| HTTP | Axios | — |
+| Animations | react-native-reanimated v4 | requires react-native-worklets |
+| Linter | ESLint 10 (flat config) | — |
+
+> **New Architecture** is enabled by default in Expo SDK 56 — no `newArchEnabled` flag needed in app.json.
+
 ## Commands
 
 ```bash
@@ -12,11 +31,11 @@ yarn web                     # Start web dev server
 yarn web:build               # Export web build
 yarn web:preview             # Preview web build locally
 yarn ts:check                # TypeScript type checking
-yarn lint                    # Run ESLint with auto-fix
+yarn lint                    # Run ESLint with auto-fix (flat config, ESLint 10)
 yarn format                  # Prettier format all TS/JS files
 yarn clean                   # Clean and regenerate native projects (expo prebuild --clean)
-yarn update                  # Check and update Expo dependencies
-yarn devbuild:ios            # EAS development build for iOS
+yarn update                  # Check and update Expo dependencies (npx expo install --check)
+yarn devbuild:ios            # EAS development build for iOS (simulator)
 yarn devbuild:android        # EAS development build for Android
 yarn devbuild:all            # EAS development build for all platforms
 yarn build:ios               # EAS production build for iOS
@@ -68,6 +87,8 @@ Two-level stack/tabs setup:
 
 Navigation types are in `src/navigation/types.ts`. Always use composite screen prop types (`CompositeScreenProps`) for screens nested inside tabs. Use `useRootNavigation()` from `src/navigation/hooks.ts` inside shared components that need navigation.
 
+This project imports directly from `@react-navigation/*` — **not** from `expo-router`. Do not migrate imports to expo-router.
+
 ### API Layer
 
 All API calls go through the shared Axios instance at `src/lib/apiClient.ts`:
@@ -81,6 +102,8 @@ Pattern for a new feature API:
 1. Create `src/features/<domain>/api/<domain>.api.ts` — pure functions that accept `axios` as first arg
 2. Create `src/features/<domain>/api/queryKeys.ts` — typed const arrays
 3. Create hooks in `src/features/<domain>/hooks/` wrapping `useQuery` / `useMutation`; call `useApiClient()` inside
+
+> **Note:** `apiClient` is a stable Axios instance — it is intentionally **not** included in `queryKey`. The `@tanstack/query/exhaustive-deps` rule is disabled globally for this reason.
 
 ### State Management
 
@@ -128,5 +151,24 @@ All live in `src/components/ui/`. Key APIs:
 
 ### Prettier & ESLint
 
-- Print width: 140, tab width: 4, single quotes, trailing commas (es5), arrow parens omitted for single param
-- ESLint extends `universe` + `universe/native`; `import/order` and inline styles rules are disabled; `no-duplicate-imports` is an error
+- **Prettier**: print width 140, tab width 4, single quotes, trailing commas (es5), arrow parens omitted for single param
+- **ESLint**: flat config (`eslint.config.js`), ESLint 10. Base: `eslint-config-universe/flat/native` + `@tanstack/eslint-plugin-query` (flat/recommended)
+- Disabled rules: `prettier/prettier`, `import/order`, `react-native/no-inline-styles`, `import/namespace`, `@tanstack/query/exhaustive-deps`
+- Enabled rules: `no-duplicate-imports: error`
+- Root JS config files (`*.config.js`) get Node.js globals automatically
+
+### EAS Builds
+
+Configured in `eas.json`. Requires EAS CLI `>= 16.0.0`.
+
+| Profile | Platform | Notes |
+|---------|----------|-------|
+| `development` | iOS simulator + Android | `developmentClient: true`, internal distribution |
+| `preview` | iOS + Android (real device) | internal distribution, no simulator |
+| `production` | iOS + Android | `autoIncrement: true`, EAS auto-selects Xcode image |
+
+> Set `extra.eas.projectId` in `app.json` (run `eas init` to populate it automatically).
+
+### CNG (Continuous Native Generation)
+
+This project has **no `ios/` or `android/` directories** — native projects are generated at build time by EAS. Never commit generated native directories. Run `yarn clean` (`expo prebuild --clean`) only when testing locally.
