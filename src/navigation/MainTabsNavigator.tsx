@@ -4,6 +4,7 @@ import { useUniwind } from "uniwind";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import type { MainTabsParamList } from "./types";
 import HomeScreen from "@/src/features/home/screens/HomeScreen";
+import ExpoUIScreen from "@/src/features/expo-ui/screens/ExpoUIScreen";
 import ProfileScreen from "@/src/features/profile/screens/ProfileScreen";
 import Icon, { type IconName } from "@/src/components/ui/Icon";
 import { getTabBarHeight, TAB_ICON_SIZE } from "@/src/constants/variable";
@@ -62,6 +63,10 @@ const MainTabsNavigator = () => {
                         iconName = focused ? "home-sharp" : "home-outline";
                     }
 
+                    if (route.name === "ExpoUI") {
+                        iconName = focused ? "apps-sharp" : "apps-outline";
+                    }
+
                     if (route.name === "Profile") {
                         iconName = focused ? "person" : "person-outline";
                     }
@@ -89,6 +94,15 @@ const MainTabsNavigator = () => {
                         fontSize: 10,
                         fontWeight: "700",
                     },
+                }}
+            />
+
+            <Tab.Screen
+                name="ExpoUI"
+                component={ExpoUIScreen}
+                options={{
+                    title: "Expo UI",
+                    tabBarLabel: "Expo UI",
                 }}
             />
 
