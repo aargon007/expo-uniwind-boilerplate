@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import axios, { AxiosHeaders } from "axios";
+import { AxiosHeaders, create } from "axios";
 
-const apiClient = axios.create({
+const apiClient = create({
     baseURL: "https://jsonplaceholder.typicode.com",
     timeout: 10000,
     headers: {
