@@ -1,7 +1,7 @@
-import React from "react";
-import { View, type ViewProps } from "react-native";
-import { cn } from "@/src/utils/cn";
-import Text from "./Text";
+import React from 'react';
+import { View, type ViewProps } from 'react-native';
+import { cn } from '@/src/utils/cn';
+import Text from './Text';
 
 interface SectionProps extends ViewProps {
     title?: string;
@@ -12,17 +12,9 @@ interface SectionProps extends ViewProps {
     contentClassName?: string;
 }
 
-const Section = ({
-    title,
-    description,
-    rightSlot,
-    children,
-    className,
-    contentClassName,
-    ...viewProps
-}: SectionProps) => {
+const Section = ({ title, description, rightSlot, children, className, contentClassName, ...viewProps }: SectionProps) => {
     return (
-        <View {...viewProps} className={cn("gap-3", className)}>
+        <View {...viewProps} className={cn('gap-3', className)}>
             {(title || description || rightSlot) && (
                 <View className="flex-row items-start justify-between gap-3">
                     <View className="flex-1 gap-1">

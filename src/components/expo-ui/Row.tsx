@@ -1,5 +1,5 @@
-import { Row as ExpoRow } from "@expo/ui";
-import type { ComponentProps } from "react";
+import { Row as ExpoRow } from '@expo/ui';
+import type { ComponentProps } from 'react';
 
 export type RowProps = ComponentProps<typeof ExpoRow>;
 

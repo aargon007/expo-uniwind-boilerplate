@@ -1,5 +1,5 @@
-import { List as ExpoList, ListItem as ExpoListItem } from "@expo/ui";
-import type { ComponentProps } from "react";
+import { List as ExpoList, ListItem as ExpoListItem } from '@expo/ui';
+import type { ComponentProps } from 'react';
 
 export type ListProps = ComponentProps<typeof ExpoList>;
 export type ListItemProps = ComponentProps<typeof ExpoListItem>;

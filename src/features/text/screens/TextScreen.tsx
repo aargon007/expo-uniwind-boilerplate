@@ -1,8 +1,8 @@
-import React from "react";
-import { ScrollView } from "react-native";
-import ScreenHeader from "@/src/components/shared/ScreenHeader";
-import ScreenWrapper from "@/src/components/ui/ScreenWrapper";
-import Text from "@/src/components/ui/Text";
+import React from 'react';
+import { ScrollView } from 'react-native';
+import ScreenHeader from '@/src/components/shared/ScreenHeader';
+import ScreenWrapper from '@/src/components/ui/ScreenWrapper';
+import Text from '@/src/components/ui/Text';
 
 const TextScreen = () => {
     return (
@@ -11,7 +11,9 @@ const TextScreen = () => {
 
             <ScrollView contentContainerClassName="p-4">
                 <Text variant="h1">Welcome Back</Text>
-                <Text variant="h2" weight="semibold">Dashboard</Text>
+                <Text variant="h2" weight="semibold">
+                    Dashboard
+                </Text>
                 <Text variant="h3">Recent Activity</Text>
                 <Text variant="h4">Settings</Text>
 
@@ -25,7 +27,9 @@ const TextScreen = () => {
                     Less important details
                 </Text>
 
-                <Text variant="label" color="secondary">Email Address</Text>
+                <Text variant="label" color="secondary">
+                    Email Address
+                </Text>
 
                 <Text variant="body-sm" color="success">
                     Changes saved successfully
@@ -49,11 +53,7 @@ const TextScreen = () => {
                     This is a longer text that will be truncated after two lines...
                 </Text>
 
-                <Text
-                    variant="body"
-                    onPress={() => console.log("pressed")}
-                    selectable
-                >
+                <Text variant="body" onPress={() => console.log('pressed')} selectable>
                     Tappable text
                 </Text>
             </ScrollView>

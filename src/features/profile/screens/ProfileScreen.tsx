@@ -1,56 +1,49 @@
-import React from "react";
-import { ScrollView, TouchableOpacity, View } from "react-native";
-import { useUniwind } from "uniwind";
-import Button from "@/src/components/ui/Button";
-import Card from "@/src/components/ui/Card";
-import Icon from "@/src/components/ui/Icon";
-import ScreenWrapper from "@/src/components/ui/ScreenWrapper";
-import Section from "@/src/components/ui/Section";
-import Text from "@/src/components/ui/Text";
+import React from 'react';
+import { ScrollView, TouchableOpacity, View } from 'react-native';
+import Button from '@/src/components/ui/Button';
+import Card from '@/src/components/ui/Card';
+import Icon from '@/src/components/ui/Icon';
+import ScreenWrapper from '@/src/components/ui/ScreenWrapper';
+import Section from '@/src/components/ui/Section';
+import Text from '@/src/components/ui/Text';
 
 const stats = [
-    { label: "Projects", value: "24" },
-    { label: "Tasks Done", value: "182" },
-    { label: "Team", value: "8" },
+    { label: 'Projects', value: '24' },
+    { label: 'Tasks Done', value: '182' },
+    { label: 'Team', value: '8' },
 ];
 
 const settings = [
     {
-        id: "account",
-        title: "Account Details",
-        subtitle: "Manage your personal information",
-        icon: "person-circle-outline" as const,
+        id: 'account',
+        title: 'Account Details',
+        subtitle: 'Manage your personal information',
+        icon: 'person-circle-outline' as const,
     },
     {
-        id: "security",
-        title: "Security",
-        subtitle: "Password, 2FA and devices",
-        icon: "shield-checkmark-outline" as const,
+        id: 'security',
+        title: 'Security',
+        subtitle: 'Password, 2FA and devices',
+        icon: 'shield-checkmark-outline' as const,
     },
     {
-        id: "notifications",
-        title: "Notifications",
-        subtitle: "Control what updates you receive",
-        icon: "notifications-outline" as const,
+        id: 'notifications',
+        title: 'Notifications',
+        subtitle: 'Control what updates you receive',
+        icon: 'notifications-outline' as const,
     },
     {
-        id: "billing",
-        title: "Billing",
-        subtitle: "Invoices, cards and subscriptions",
-        icon: "card-outline" as const,
+        id: 'billing',
+        title: 'Billing',
+        subtitle: 'Invoices, cards and subscriptions',
+        icon: 'card-outline' as const,
     },
 ];
 
 const ProfileScreen = () => {
-    const { theme } = useUniwind();
-
     return (
         <ScreenWrapper withBottomInset={false}>
-            <ScrollView
-                key={theme}
-                showsVerticalScrollIndicator={false}
-                contentContainerClassName="gap-5 px-5 pb-4"
-            >
+            <ScrollView showsVerticalScrollIndicator={false} contentContainerClassName="gap-5 px-5 pb-4">
                 <Card variant="primary" radius="3xl" className="mt-2 p-5">
                     <View className="flex-row items-center justify-between">
                         <View className="h-14 w-14 items-center justify-center rounded-full bg-on-primary-surface">
@@ -71,12 +64,7 @@ const ProfileScreen = () => {
                     </Text>
 
                     <View className="mt-5 flex-row gap-3">
-                        <Button
-                            label="Edit Profile"
-                            variant="secondary"
-                            size="sm"
-                            className="flex-1"
-                        />
+                        <Button label="Edit Profile" variant="secondary" size="sm" className="flex-1" />
                         <Button
                             label="Share"
                             variant="outline"
@@ -88,11 +76,8 @@ const ProfileScreen = () => {
                 </Card>
 
                 <View className="flex-row gap-3">
-                    {stats.map((item) => (
-                        <Card
-                            key={item.label}
-                            className="flex-1 items-center"
-                        >
+                    {stats.map(item => (
+                        <Card key={item.label} className="flex-1 items-center">
                             <Text variant="h4">{item.value}</Text>
                             <Text variant="caption" color="secondary" className="mt-1">
                                 {item.label}
@@ -131,9 +116,7 @@ const ProfileScreen = () => {
                         <TouchableOpacity
                             key={item.id}
                             activeOpacity={0.8}
-                            className={`flex-row items-center px-4 py-4 ${index !== settings.length - 1 ? "border-b border-border" : ""
-                                }`}
-                        >
+                            className={`flex-row items-center px-4 py-4 ${index !== settings.length - 1 ? 'border-b border-border' : ''}`}>
                             <View className="h-10 w-10 items-center justify-center rounded-xl bg-bg-secondary">
                                 <Icon name={item.icon} size={20} textClassName="text-text" />
                             </View>

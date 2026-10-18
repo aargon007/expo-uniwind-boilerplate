@@ -1,0 +1,25 @@
+name: Quality checks
+
+on:
+    pull_request:
+    push:
+        branches: [main, master]
+
+permissions:
+    contents: read
+
+jobs:
+    check:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version-file: .nvmrc
+            - run: corepack enable
+            - run: yarn install --frozen-lockfile --non-interactive
+            - run: yarn ts:check
+            - run: yarn lint
+            - run: yarn format:check
+            - run: yarn test:ci
+            - run: yarn web:build

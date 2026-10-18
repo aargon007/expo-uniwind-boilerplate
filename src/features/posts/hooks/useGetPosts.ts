@@ -1,14 +1,11 @@
-import { useQuery } from "@tanstack/react-query";
-import { useApiClient } from "@/src/lib/apiClient";
-import { getPosts } from "../api/posts.api";
-import { queryKeys } from "../api/queryKeys";
+import { useQuery } from '@tanstack/react-query';
+import { apiClient } from '@/src/lib/apiClient';
+import { getPosts } from '../api/posts.api';
+import { queryKeys } from '../api/queryKeys';
 
 export const useGetPosts = () => {
-    const apiClient = useApiClient();
-
     return useQuery({
-         
         queryKey: queryKeys.posts,
-        queryFn: () => getPosts(apiClient),
+        queryFn: ({ signal }) => getPosts(apiClient, signal),
     });
 };

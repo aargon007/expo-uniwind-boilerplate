@@ -1,0 +1,11 @@
+node_modules/
+.expo/
+android/
+ios/
+dist/
+coverage/
+yarn.lock
+src/types/uniwind.d.ts
+AGENTS.md
+CLAUDE.md
+.vscode/

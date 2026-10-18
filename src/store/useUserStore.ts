@@ -1,4 +1,5 @@
-import { create } from "zustand";
+import { create } from 'zustand';
+import { useShallow } from 'zustand/react/shallow';
 
 export interface User {
     email: string;
@@ -11,18 +12,20 @@ export interface UserStore {
     clearUser: () => void;
 }
 
-const useUserStore = create<UserStore>((set) => ({
+const useUserStore = create<UserStore>(set => ({
     user: null,
-    setUser: (data) => set(() => ({ user: data })),
+    setUser: data => set(() => ({ user: data })),
     clearUser: () => set(() => ({ user: null })),
 }));
 
-export const useCurrentUser = () => useUserStore((state) => state.user);
+export const useCurrentUser = () => useUserStore(state => state.user);
 
 export const useUserActions = () =>
-    useUserStore((state) => ({
-        setUser: state.setUser,
-        clearUser: state.clearUser,
-    }));
+    useUserStore(
+        useShallow(state => ({
+            setUser: state.setUser,
+            clearUser: state.clearUser,
+        }))
+    );
 
 export default useUserStore;

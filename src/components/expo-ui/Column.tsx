@@ -1,5 +1,5 @@
-import { Column as ExpoColumn, Host as ExpoHost } from "@expo/ui";
-import type { ComponentProps } from "react";
+import { Column as ExpoColumn, Host as ExpoHost } from '@expo/ui';
+import type { ComponentProps } from 'react';
 
 export type ColumnProps = ComponentProps<typeof ExpoColumn>;
 export type HostProps = ComponentProps<typeof ExpoHost>;

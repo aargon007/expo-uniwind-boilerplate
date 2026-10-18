@@ -1,5 +1,5 @@
-import { Slider as ExpoSlider } from "@expo/ui";
-import type { ComponentProps } from "react";
+import { Slider as ExpoSlider } from '@expo/ui';
+import type { ComponentProps } from 'react';
 
 export type SliderProps = ComponentProps<typeof ExpoSlider>;
 

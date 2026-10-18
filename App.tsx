@@ -1,52 +1,45 @@
-import "./global.css"
+import './global.css';
 import { useEffect } from 'react';
-import { useFonts } from "expo-font";
 import * as SplashScreen from 'expo-splash-screen';
-import { DarkTheme, DefaultTheme, NavigationContainer } from '@react-navigation/native';
-import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { SafeAreaProvider } from "react-native-safe-area-context";
-import { KeyboardProvider } from "react-native-keyboard-controller";
-import { QueryClientProvider } from '@tanstack/react-query'
-import { queryClient } from '@/src/lib/queryClient'
-import { useUniwind } from "uniwind";
-import RootNavigator from "./src/navigation/RootNavigator";
-import { ErrorBoundary } from "./src/components/shared/ErrorBoundary";
-import ToastProvider from "./src/components/shared/ToastProvider";
+import { NavigationContainer } from '@react-navigation/native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { KeyboardProvider } from 'react-native-keyboard-controller';
+import { QueryClientProvider } from '@tanstack/react-query';
+import { queryClient } from '@/src/lib/queryClient';
+import { useAppNavigationTheme } from '@/src/navigation/useAppNavigationTheme';
+import RootNavigator from './src/navigation/RootNavigator';
+import { ErrorBoundary } from './src/components/shared/ErrorBoundary';
+import QueryLifecycle from './src/components/shared/QueryLifecycle';
+import StatusBar from './src/components/shared/StatusBar';
+import ToastProvider from './src/components/shared/ToastProvider';
 
-// Keep the splash screen visible while fetch resources
-SplashScreen.preventAutoHideAsync();
+SplashScreen.preventAutoHideAsync().catch(console.warn);
 
 export default function App() {
-  const { theme } = useUniwind();
-  const [loaded] = useFonts({
-    "Inter-Black": require("@/assets/fonts/Inter-Black.otf"),
-  });
+    const navigationTheme = useAppNavigationTheme();
 
-  useEffect(() => {
-    if (loaded) {
-      // Hide the splash screen
-      SplashScreen.hideAsync();
-    }
-  }, [loaded]);
+    useEffect(() => {
+        // The app uses system fonts, so startup never waits on an unused font asset.
+        SplashScreen.hideAsync().catch(console.warn);
+    }, []);
 
-  if (!loaded) {
-    return null;
-  }
-
-  return (
-    <GestureHandlerRootView className="flex-1 bg-bg">
-      <SafeAreaProvider>
-        <KeyboardProvider>
-          <ErrorBoundary onError={(error) => console.error('App Error:', error)}>
-            <QueryClientProvider client={queryClient}>
-              <NavigationContainer theme={theme === 'dark' ? DarkTheme : DefaultTheme}>
-                <RootNavigator />
-                <ToastProvider />
-              </NavigationContainer>
-            </QueryClientProvider>
-          </ErrorBoundary>
-        </KeyboardProvider>
-      </SafeAreaProvider>
-    </GestureHandlerRootView>
-  );
+    return (
+        <GestureHandlerRootView className="flex-1 bg-bg">
+            <SafeAreaProvider>
+                <KeyboardProvider>
+                    <ErrorBoundary>
+                        <QueryClientProvider client={queryClient}>
+                            <QueryLifecycle />
+                            <StatusBar />
+                            <NavigationContainer theme={navigationTheme}>
+                                <RootNavigator />
+                                <ToastProvider />
+                            </NavigationContainer>
+                        </QueryClientProvider>
+                    </ErrorBoundary>
+                </KeyboardProvider>
+            </SafeAreaProvider>
+        </GestureHandlerRootView>
+    );
 }

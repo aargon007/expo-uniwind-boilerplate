@@ -1,22 +1,21 @@
-import { Alert } from "react-native";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useApiClient } from "@/src/lib/apiClient";
-import { createPost } from "../api/posts.api";
-import { queryKeys } from "../api/queryKeys";
-import type { Post } from "../types";
+import { toast } from 'sonner-native';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { apiClient } from '@/src/lib/apiClient';
+import { createPost } from '../api/posts.api';
+import { queryKeys } from '../api/queryKeys';
+import type { Post } from '../types';
 
 export const useCreatePost = () => {
-    const apiClient = useApiClient();
     const queryClient = useQueryClient();
 
     return useMutation({
-        mutationFn: (payload: Omit<Post, "id">) => createPost(apiClient, payload),
-        onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: queryKeys.posts });
-            Alert.alert("Success", "Post added successfully!");
+        mutationFn: (payload: Omit<Post, 'id'>) => createPost(apiClient, payload),
+        onSuccess: async () => {
+            await queryClient.invalidateQueries({ queryKey: queryKeys.posts });
+            toast.success('Post created', { description: 'The demo API simulates saving; posts are not persisted.' });
         },
-        onError: (error) => {
-            Alert.alert("Error", error.message);
+        onError: error => {
+            toast.error('Could not create post', { description: error.message });
         },
     });
 };

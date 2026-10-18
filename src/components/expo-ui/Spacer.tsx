@@ -1,5 +1,5 @@
-import { Spacer as ExpoSpacer } from "@expo/ui";
-import type { ComponentProps } from "react";
+import { Spacer as ExpoSpacer } from '@expo/ui';
+import type { ComponentProps } from 'react';
 
 export type SpacerProps = ComponentProps<typeof ExpoSpacer>;
 

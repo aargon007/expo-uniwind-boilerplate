@@ -1,6 +1,7 @@
-import { useState } from "react";
-import { View } from "react-native";
-import { ScrollView, Text as NativeText } from "@expo/ui";
+import { useResolveClassNames } from 'uniwind';
+import { useState } from 'react';
+import { View } from 'react-native';
+import { ScrollView, Text as NativeText } from '@expo/ui';
 import {
     Checkbox,
     Collapsible,
@@ -14,40 +15,42 @@ import {
     Slider,
     Spacer,
     Switch,
-} from "@/src/components/expo-ui";
-import ScreenWrapper from "@/src/components/ui/ScreenWrapper";
-import Text from "@/src/components/ui/Text";
-import type { MainTabScreenProps } from "@/src/navigation/types";
+} from '@/src/components/expo-ui';
+import ScreenWrapper from '@/src/components/ui/ScreenWrapper';
+import Text from '@/src/components/ui/Text';
+import type { MainTabScreenProps } from '@/src/navigation/types';
 
-type ExpoUIScreenProps = MainTabScreenProps<"ExpoUI">;
+type ExpoUIScreenProps = MainTabScreenProps<'ExpoUI'>;
 
 const FLAVOURS = [
-    { label: "Vanilla", value: "vanilla" as const },
-    { label: "Chocolate", value: "chocolate" as const },
-    { label: "Strawberry", value: "strawberry" as const },
-    { label: "Pistachio", value: "pistachio" as const },
+    { label: 'Vanilla', value: 'vanilla' as const },
+    { label: 'Chocolate', value: 'chocolate' as const },
+    { label: 'Strawberry', value: 'strawberry' as const },
+    { label: 'Pistachio', value: 'pistachio' as const },
 ];
 
-type Flavour = (typeof FLAVOURS)[number]["value"];
+type Flavour = (typeof FLAVOURS)[number]['value'];
 
 const SIZES = [
-    { label: "Small", value: 1 },
-    { label: "Medium", value: 2 },
-    { label: "Large", value: 3 },
+    { label: 'Small', value: 1 },
+    { label: 'Medium', value: 2 },
+    { label: 'Large', value: 3 },
 ];
 
 const MENU_ITEMS = [
-    { id: 1, name: "Appearance" },
-    { id: 2, name: "Notifications" },
-    { id: 3, name: "Privacy" },
-    { id: 4, name: "Help" },
-    { id: 5, name: "About" },
+    { id: 1, name: 'Appearance' },
+    { id: 2, name: 'Notifications' },
+    { id: 3, name: 'Privacy' },
+    { id: 4, name: 'Help' },
+    { id: 5, name: 'About' },
 ];
 
-const sectionTitle = { fontSize: 18 as const, fontWeight: "bold" as const };
-const sectionNote = { fontSize: 13 as const, color: "#6c6c70" };
+const sectionTitle = { fontSize: 18 as const, fontWeight: 'bold' as const };
 
 const ExpoUIScreen = (_props: ExpoUIScreenProps) => {
+    const { color } = useResolveClassNames('text-text-secondary');
+    const sectionNote = { fontSize: 13, color: typeof color === 'string' ? color : undefined };
+
     // Switch
     const [wifi, setWifi] = useState(true);
     const [bluetooth, setBluetooth] = useState(false);
@@ -64,14 +67,14 @@ const ExpoUIScreen = (_props: ExpoUIScreenProps) => {
     const [stepped, setStepped] = useState(20);
 
     // Picker
-    const [menuFlavour, setMenuFlavour] = useState<Flavour>("vanilla");
-    const [wheelFlavour, setWheelFlavour] = useState<Flavour>("chocolate");
+    const [menuFlavour, setMenuFlavour] = useState<Flavour>('vanilla');
+    const [wheelFlavour, setWheelFlavour] = useState<Flavour>('chocolate');
     const [size, setSize] = useState(2);
 
     // Collapsible
     const [colOpen, setColOpen] = useState(false);
     const [advOpen, setAdvOpen] = useState(false);
-    const [openPanel, setOpenPanel] = useState<"a" | "b" | "c" | null>(null);
+    const [openPanel, setOpenPanel] = useState<'a' | 'b' | 'c' | null>(null);
 
     // FieldGroup
     const [fgWifi, setFgWifi] = useState(true);
@@ -80,7 +83,7 @@ const ExpoUIScreen = (_props: ExpoUIScreenProps) => {
     const [analytics, setAnalytics] = useState(false);
 
     // List
-    const [lastTapped, setLastTapped] = useState("—");
+    const [lastTapped, setLastTapped] = useState('—');
 
     return (
         <ScreenWrapper withBottomInset={false}>
@@ -94,7 +97,6 @@ const ExpoUIScreen = (_props: ExpoUIScreenProps) => {
             <Host style={{ flex: 1 }}>
                 <ScrollView style={{ padding: 16 }}>
                     <Column spacing={32}>
-
                         {/* ── Switch ────────────────────────────────── */}
                         <Column spacing={8}>
                             <NativeText textStyle={sectionTitle}>Switch</NativeText>
@@ -201,25 +203,13 @@ const ExpoUIScreen = (_props: ExpoUIScreenProps) => {
                             </Collapsible>
 
                             <NativeText textStyle={sectionNote}>Accordion (one open at a time)</NativeText>
-                            <Collapsible
-                                label="Panel A"
-                                isOpen={openPanel === "a"}
-                                onOpenChange={open => setOpenPanel(open ? "a" : null)}
-                            >
+                            <Collapsible label="Panel A" isOpen={openPanel === 'a'} onOpenChange={open => setOpenPanel(open ? 'a' : null)}>
                                 <Switch label="Option" value={wifi} onValueChange={setWifi} />
                             </Collapsible>
-                            <Collapsible
-                                label="Panel B"
-                                isOpen={openPanel === "b"}
-                                onOpenChange={open => setOpenPanel(open ? "b" : null)}
-                            >
+                            <Collapsible label="Panel B" isOpen={openPanel === 'b'} onOpenChange={open => setOpenPanel(open ? 'b' : null)}>
                                 <Checkbox label="Setting" value={terms} onValueChange={setTerms} />
                             </Collapsible>
-                            <Collapsible
-                                label="Panel C"
-                                isOpen={openPanel === "c"}
-                                onOpenChange={open => setOpenPanel(open ? "c" : null)}
-                            >
+                            <Collapsible label="Panel C" isOpen={openPanel === 'c'} onOpenChange={open => setOpenPanel(open ? 'c' : null)}>
                                 <Slider value={basic} onValueChange={setBasic} />
                             </Collapsible>
                         </Column>
@@ -244,17 +234,11 @@ const ExpoUIScreen = (_props: ExpoUIScreenProps) => {
                             <NativeText textStyle={sectionTitle}>List</NativeText>
                             <List>
                                 {MENU_ITEMS.map(item => (
-                                    <ListItem
-                                        key={item.id}
-                                        onPress={() => setLastTapped(item.name)}
-                                        supportingText="Tap to select"
-                                    >
+                                    <ListItem key={item.id} onPress={() => setLastTapped(item.name)} supportingText="Tap to select">
                                         {item.name}
                                     </ListItem>
                                 ))}
-                                <ListItem supportingText={`Last tapped: ${lastTapped}`}>
-                                    Status
-                                </ListItem>
+                                <ListItem supportingText={`Last tapped: ${lastTapped}`}>Status</ListItem>
                             </List>
                         </Column>
 
@@ -288,7 +272,6 @@ const ExpoUIScreen = (_props: ExpoUIScreenProps) => {
                                 </Column>
                             </Row>
                         </Column>
-
                     </Column>
                 </ScrollView>
             </Host>

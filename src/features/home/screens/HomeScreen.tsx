@@ -1,52 +1,46 @@
-import React, { useState } from "react";
-import { Modal, Pressable, View } from "react-native";
-import { toast } from "sonner-native";
-import { Uniwind, useUniwind } from "uniwind";
-import Button from "@/src/components/ui/Button";
-import Card from "@/src/components/ui/Card";
-import Icon from "@/src/components/ui/Icon";
-import ScreenWrapper from "@/src/components/ui/ScreenWrapper";
-import Section from "@/src/components/ui/Section";
-import Text from "@/src/components/ui/Text";
-import type { MainTabScreenProps } from "@/src/navigation/types";
+import React, { useState } from 'react';
+import { Modal, Pressable, View } from 'react-native';
+import { toast } from 'sonner-native';
+import { Uniwind, useUniwind } from 'uniwind';
+import Button from '@/src/components/ui/Button';
+import Card from '@/src/components/ui/Card';
+import Icon from '@/src/components/ui/Icon';
+import ScreenWrapper from '@/src/components/ui/ScreenWrapper';
+import Section from '@/src/components/ui/Section';
+import Text from '@/src/components/ui/Text';
+import type { MainTabScreenProps } from '@/src/navigation/types';
 
-type HomeScreenProps = MainTabScreenProps<"Home">;
+type HomeScreenProps = MainTabScreenProps<'Home'>;
 
 const HomeScreen = ({ navigation }: HomeScreenProps) => {
     const { theme } = useUniwind();
     const [isToastModalVisible, setIsToastModalVisible] = useState(false);
 
     const toggleTheme = () => {
-        Uniwind.setTheme(theme === "dark" ? "light" : "dark");
+        Uniwind.setTheme(theme === 'dark' ? 'light' : 'dark');
     };
 
     const showHomeToast = () => {
-        toast.success("Toast is working", {
-            description: "This one was triggered directly from the Home screen.",
+        toast.success('Toast is working', {
+            description: 'This one was triggered directly from the Home screen.',
         });
     };
 
     const showModalToast = () => {
-        toast("Toast from modal", {
-            description: "The modal can trigger sonner-native toasts too.",
+        toast('Toast from modal', {
+            description: 'The modal can trigger sonner-native toasts too.',
             action: {
-                label: "Undo",
+                label: 'Undo',
                 onClick: () => {
-                    toast.info("Undo tapped", {
-                        description: "Action handlers can chain another toast.",
+                    toast.info('Undo tapped', {
+                        description: 'Action handlers can chain another toast.',
                     });
                 },
             },
         });
     };
 
-    const themeIcon = (
-        <Icon
-            name={theme === "dark" ? "sunny-outline" : "moon-outline"}
-            size={16}
-            textClassName="text-text"
-        />
-    );
+    const themeIcon = <Icon name={theme === 'dark' ? 'sunny-outline' : 'moon-outline'} size={16} textClassName="text-text" />;
 
     return (
         <ScreenWrapper>
@@ -56,7 +50,7 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
                 <Button
                     size="sm"
                     variant="outline"
-                    label={theme === "dark" ? "Light" : "Dark"}
+                    label={theme === 'dark' ? 'Light' : 'Dark'}
                     leftIcon={themeIcon}
                     onPress={toggleTheme}
                     textClassName="uppercase"
@@ -71,72 +65,35 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
                 <Card>
                     <Section
                         title="TOAST TEST"
-                        description="Use these buttons to verify the global toaster on the home screen and from inside a modal."
-                    >
+                        description="Use these buttons to verify the global toaster on the home screen and from inside a modal.">
                         <View className="gap-3">
-                            <Button
-                                label="Show home toast"
-                                onPress={showHomeToast}
-                                width="full"
-                            />
+                            <Button label="Show home toast" onPress={showHomeToast} width="full" />
 
-                            <Button
-                                label="Open toast modal"
-                                onPress={() => setIsToastModalVisible(true)}
-                                width="full"
-                                variant="outline"
-                            />
+                            <Button label="Open toast modal" onPress={() => setIsToastModalVisible(true)} width="full" variant="outline" />
                         </View>
                     </Section>
                 </Card>
 
-                <Button
-                    label="Text screen"
-                    onPress={() => navigation.navigate("TextScreen")}
-                    width="full"
-                />
+                <Button label="Text screen" onPress={() => navigation.navigate('TextScreen')} width="full" />
 
-                <Button
-                    label="Query screen"
-                    onPress={() => navigation.navigate("QueryScreen")}
-                    width="full"
-                    variant="secondary"
-                />
+                <Button label="Query screen" onPress={() => navigation.navigate('QueryScreen')} width="full" variant="secondary" />
             </View>
 
-            <Modal
-                animationType="fade"
-                transparent
-                visible={isToastModalVisible}
-                onRequestClose={() => setIsToastModalVisible(false)}
-            >
+            <Modal animationType="fade" transparent visible={isToastModalVisible} onRequestClose={() => setIsToastModalVisible(false)}>
                 <View className="flex-1 items-center justify-center px-5">
-                    <Pressable
-                        className="absolute inset-0"
-                        onPress={() => setIsToastModalVisible(false)}
-                    />
+                    <Pressable className="absolute inset-0" onPress={() => setIsToastModalVisible(false)} />
 
                     <Card className="w-full max-w-sm gap-4 p-5" radius="3xl">
                         <View className="gap-2">
                             <Text variant="h4">Toast modal</Text>
                             <Text variant="body-sm" color="secondary">
-                                Trigger a toast here to confirm the provider works
-                                above modal content too.
+                                Trigger a toast here to confirm the provider works above modal content too.
                             </Text>
                         </View>
 
-                        <Button
-                            label="Show modal toast"
-                            onPress={showModalToast}
-                            width="full"
-                        />
+                        <Button label="Show modal toast" onPress={showModalToast} width="full" />
 
-                        <Button
-                            label="Close"
-                            onPress={() => setIsToastModalVisible(false)}
-                            width="full"
-                            variant="ghost"
-                        />
+                        <Button label="Close" onPress={() => setIsToastModalVisible(false)} width="full" variant="ghost" />
                     </Card>
                 </View>
             </Modal>

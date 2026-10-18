@@ -1,11 +1,9 @@
-import React from "react";
-import { View } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { StatusBar as NativeStatusBar } from 'react-native';
+import { useUniwind } from 'uniwind';
 
 const StatusBar = () => {
-    const insets = useSafeAreaInsets();
-
-    return <View style={{ height: insets?.top || 20 }} />;
+    const { theme } = useUniwind();
+    return <NativeStatusBar barStyle={theme === 'dark' ? 'light-content' : 'dark-content'} />;
 };
 
 export default StatusBar;

@@ -1,18 +1,17 @@
-import React from "react";
-import { Ionicons } from "@expo/vector-icons";
-import { withUniwind } from "uniwind";
+import React from 'react';
+import { Ionicons } from '@expo/vector-icons';
+import { withUniwind } from 'uniwind';
 
 export const StyledIoniconBase = withUniwind(Ionicons, {
     color: {
-        fromClassName: "textClassName",
-        styleProperty: "color",
+        fromClassName: 'textClassName',
+        styleProperty: 'color',
     },
 });
 
-export type IconName = React.ComponentProps<typeof Ionicons>["name"];
+export type IconName = React.ComponentProps<typeof Ionicons>['name'];
 
-export interface IconProps
-    extends Omit<React.ComponentProps<typeof Ionicons>, "name"> {
+export interface IconProps extends Omit<React.ComponentProps<typeof Ionicons>, 'name'> {
     name: IconName;
     textClassName?: string;
     className?: string;

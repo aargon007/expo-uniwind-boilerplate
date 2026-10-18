@@ -1,8 +1,8 @@
-import React, { Component, type ErrorInfo, type ReactNode } from "react";
-import { ScrollView, View } from "react-native";
-import Button from "../ui/Button";
-import Icon from "../ui/Icon";
-import Text from "../ui/Text";
+import React, { Component, type ErrorInfo, type ReactNode } from 'react';
+import { ScrollView, View } from 'react-native';
+import Button from '../ui/Button';
+import Icon from '../ui/Icon';
+import Text from '../ui/Text';
 
 interface Props {
     children: ReactNode;
@@ -25,7 +25,7 @@ export class ErrorBoundary extends Component<Props, State> {
     }
 
     public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-        console.error("ErrorBoundary caught an error:", error, errorInfo);
+        console.error('ErrorBoundary caught an error:', error, errorInfo);
         this.props.onError?.(error, errorInfo);
     }
 
@@ -60,7 +60,7 @@ export class ErrorBoundary extends Component<Props, State> {
                                 </Text>
                                 {this.state.error.stack && (
                                     <Text variant="caption" color="tertiary" className="mt-2">
-                                        {this.state.error.stack.split("\n").slice(0, 5).join("\n")}
+                                        {this.state.error.stack.split('\n').slice(0, 5).join('\n')}
                                     </Text>
                                 )}
                             </ScrollView>

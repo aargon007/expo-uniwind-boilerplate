@@ -1,9 +1,9 @@
-import { Toaster } from "sonner-native";
-import { useUniwind } from "uniwind";
+import { Toaster } from 'sonner-native';
+import { useUniwind } from 'uniwind';
 
 const ToastProvider = () => {
     const { theme } = useUniwind();
-    const toasterTheme = theme === "dark" ? "dark" : "light";
+    const toasterTheme = theme === 'dark' ? 'dark' : 'light';
 
     return (
         <Toaster
@@ -13,9 +13,9 @@ const ToastProvider = () => {
             visibleToasts={2}
             toastOptions={{
                 style: {
-                    width: "84%",
-                    marginLeft: "auto",
-                    marginRight: "auto",
+                    width: '84%',
+                    marginLeft: 'auto',
+                    marginRight: 'auto',
                 },
             }}
         />

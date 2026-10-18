@@ -1,5 +1,5 @@
-import { Collapsible as ExpoCollapsible } from "@expo/ui";
-import type { ComponentProps } from "react";
+import { Collapsible as ExpoCollapsible } from '@expo/ui';
+import type { ComponentProps } from 'react';
 
 export type CollapsibleProps = ComponentProps<typeof ExpoCollapsible>;
 

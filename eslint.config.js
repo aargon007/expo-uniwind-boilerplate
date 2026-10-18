@@ -8,7 +8,7 @@ module.exports = defineConfig([
     { ignores: ['node_modules/', 'dist/', '.expo/', 'android/', 'ios/'] },
     // Node.js globals for root config files (metro.config.js, babel.config.js, etc.)
     {
-        files: ['*.config.js', '*.config.ts', '*.config.mjs'],
+        files: ['*.config.js', '*.config.ts', '*.config.mjs', 'jest.setup.js'],
         languageOptions: { globals: globals.node },
     },
     ...fixupConfigRules(universe),
